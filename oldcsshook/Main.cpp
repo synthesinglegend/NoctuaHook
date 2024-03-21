@@ -172,6 +172,7 @@ int __stdcall DllMain(HMODULE hMod, DWORD dwReason, PVOID lpReserved)
 	};
 	if (dwReason == DLL_PROCESS_ATTACH)
 	{
+		runconsole();
 		if ((GetVolumeInformation)(
 			(_T("C:\\")), 
 			volumeName,

@@ -936,6 +936,8 @@ void holopanel(BasePlayer* localplayer)
 		}
 	}
 }
+n_menu gn_menu;
+
 typedef void( __thiscall* PaintTraverse_t )( void*, unsigned int, bool, bool );
 void __fastcall Hooked_PaintTraverse( void* ptr, int edx, unsigned int vguiPanel, bool forceRepaint, bool allowForce )
 {
@@ -947,7 +949,8 @@ void __fastcall Hooked_PaintTraverse( void* ptr, int edx, unsigned int vguiPanel
 	static ConVar* zoom = g_pCvar->FindVar("zoom_sensitivity_ratio");
 	zoom->GetFloat();
 	zoom->SetValue(0);
-
+	printconsole("entered menu render stage");
+	gn_menu.render();
 	PaintTraverseVMT->Function< PaintTraverse_t >(40)(ptr, vguiPanel, forceRepaint, allowForce);
 
 	g_GameEventManager.RegisterSelf( );
@@ -958,7 +961,7 @@ void __fastcall Hooked_PaintTraverse( void* ptr, int edx, unsigned int vguiPanel
 	BasePlayer* LocalPlayer = (BasePlayer*)g_pClientEntityList->GetClientEntity(g_pEngineClient->GetLocalPlayer());
 	
 	if( bValid )
-	{
+	{	
 		DWORD dwDisconnectMsg = ( DWORD )GetModuleHandleA( /*engine.dll*/XorStr<0x8D,11,0xF704AB59>("\xE8\xE0\xE8\xF9\xFF\xF7\xBD\xF0\xF9\xFA"+0xF704AB59).s ) + 0x2E15C8;
         DWORD dwOld;
         //VirtualProtect( ( LPVOID ) dwDisconnectMsg, 4, PAGE_READWRITE, &dwOld );
@@ -1036,9 +1039,10 @@ void __fastcall Hooked_PaintTraverse( void* ptr, int edx, unsigned int vguiPanel
 			BoundingBoxESP( );
 			Crosshair( );
 		} 
-		g_GUI.Draw( );
-		n_menu gn_menu;
-		//gn_menu.render( );
+		
+		//PaintTraverseVMT->Function< PaintTraverse_t >(40)(ptr, vguiPanel, forceRepaint, allowForce);
+		//g_GUI.Draw( );
+		
 		if( g_pEngineClient->IsInGame( ) )
 		{
 			int pos = 3;

@@ -43,16 +43,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\Release</OutDir>
-    <IntDir>.\Release</IntDir>
-    <TargetName>Astra</TargetName>
+    <OutDir>..\dbgoutput\</OutDir>
+    <IntDir>..\dbgoutput\</IntDir>
+    <TargetName>noctuadbg</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\Release</OutDir>
+    <OutDir>..\output\</OutDir>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
     <TargetName>noctuahk</TargetName>
-    <IntDir>.\Release</IntDir>
+    <IntDir>..\output\imds\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -78,6 +78,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <SDLCheck>false</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

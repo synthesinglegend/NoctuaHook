@@ -2,6 +2,7 @@
 n_menu gn_menu;
 void n_menu::render( )
 {
+    printconsole("begin menu render");
   zgui::poll_input( "Counter-Strike Source" );
   if ( zgui::begin_window( "NoctuaHook", { 500,350 }, g_Font, zgui::zgui_window_flags_none ) )
   {

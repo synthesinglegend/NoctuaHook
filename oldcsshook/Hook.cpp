@@ -369,7 +369,8 @@ void Hook( void )
 	while( GetModuleHandleA( /*engine*/XorStr<0xFF,7,0x5467D774>("\x9A\x6E\x66\x6B\x6D\x61"+0x5467D774).s ) == NULL || GetModuleHandleA( /*client*/XorStr<0x9A,7,0x861DD552>("\xF9\xF7\xF5\xF8\xF0\xEB"+0x861DD552).s ) == NULL ) Sleep( 100 );
 
 	for( int i = 0; i <= 7; i++ ) InitInterfaces( InterfacesArray[ i ].idx, InterfacesArray[ i ].name.c_str( ) );
-	printconsole( /* Interfaces initialized...*/XorStr<0x0C,27,0x060618EC>("\x2C\x44\x60\x7B\x75\x63\x74\x72\x77\x70\x65\x37\x71\x77\x73\x6F\x75\x7C\x72\x76\x5A\x44\x46\x0D\x0A\x0B"+0x060618EC).s );
+	printconsole("[1] Interfaces");
+	//printconsole( /* Interfaces initialized...*/XorStr<0x0C,27,0x060618EC>("\x2C\x44\x60\x7B\x75\x63\x74\x72\x77\x70\x65\x37\x71\x77\x73\x6F\x75\x7C\x72\x76\x5A\x44\x46\x0D\x0A\x0B"+0x060618EC).s );
 	//m_pEngineEffects = (IEffects*)QueryInterface(XorStr("client.dll"), XorStr("IEffects"));
 	m_pEngineEffects = GrabInterface(IEffects*, INTERFACE_CLIENT, "IEffects");
 	g_pBaseClientDll = GrabInterface( IBaseClientDLL*, INTERFACE_CLIENT, "VClient" );
@@ -392,12 +393,12 @@ void Hook( void )
 	g_pInput = **( IInput*** )( ( *( uintptr_t** ) g_pBaseClientDll )[ 11 ] + 0x2 );
 	g_pGlobals = **( CGlobalVarsBase*** )( ( *( uintptr_t** ) g_pBaseClientDll )[ 0 ] + 0x2F );
 	g_pClientMode = **reinterpret_cast<IClientMode***>(g_Stuff.PatternScan("client.dll", "8B 0D ? ? ? ? 8B 01 FF 50 64 84 C0 74 0B") + 2);
-
+	printconsole("[1] Initialized");
 	HMODULE vstdlib = GetModuleHandleA( /*vstdlib.dll*/XorStr<0x8B,12,0x922FC0BB>("\xFD\xFF\xF9\xEA\xE3\xF9\xF3\xBC\xF7\xF8\xF9"+0x922FC0BB).s );
     RandomSeed = ( RandomSeedFn )GetProcAddress( vstdlib, /*RandomSeed*/XorStr<0xA8,11,0x514D0126>("\xFA\xC8\xC4\xCF\xC3\xC0\xFD\xCA\xD5\xD5"+0x514D0126).s );
     RandomFloat = ( RandomFloatFn )GetProcAddress( vstdlib, /*RandomFloat*/XorStr<0xD5,12,0x17E3FE6D>("\x87\xB7\xB9\xBC\xB6\xB7\x9D\xB0\xB2\xBF\xAB"+0x17E3FE6D).s );
     RandomInt = ( RandomIntFn )GetProcAddress( vstdlib, /*RandomInt*/XorStr<0x82,10,0x05AB732A>("\xD0\xE2\xEA\xE1\xE9\xEA\xC1\xE7\xFE"+0x05AB732A).s );
-
+	printconsole("[2] Hooks");
 	PDWORD* pdwPanelVMT = ( PDWORD* )g_pPanel; 
 	PDWORD* pdwInputVMT = ( PDWORD* )g_pInput; 
 	PDWORD* pdwEngineVMT = ( PDWORD* )g_pEngineClient;
@@ -419,7 +420,7 @@ void Hook( void )
 	CreateMoveVMT->HookFunction( 18, Hooked_CreateMove );
 	//CreateMoveVMT->HookFunction( 17, Hooked_IN_KeyEvent ); 
 	CreateMoveVMT->HookFunction( 32, Hooked_FrameStageNotify );	
-	
+	printconsole("framestagenotify");
 	GetUserCmdVMT = new CVMTHook( pdwInputVMT );
 	GetUserCmdVMT->HookFunction( 8, Hooked_GetUserCmd );
 	
@@ -440,12 +441,12 @@ void Hook( void )
 
 	MaterialSystemVMT = new CVMTHook(pdwMaterialSystemVMT);
 	MaterialSystemVMT->HookFunction(27, Hooked_FindMaterial);
-
+	printconsole("findmaterial");
 	g_pEngineClient->GetScreenSize( screen_x, screen_y );
 
 	PaintTraverseVMT = new CVMTHook( pdwPanelVMT );
 	PaintTraverseVMT->HookFunction( 40, Hooked_PaintTraverse );
-
+	printconsole("painttraverse");
 	g_CVars.Init( );
 //	Discord* g_Discord;
 //	g_Discord->Initialize();
@@ -462,9 +463,9 @@ void Hook( void )
 	g_pNetvarManager->HookRecvProp( /*DT_CSPlayer*/XorStr<0x17,12,0x4063FD44>("\x53\x4C\x46\x59\x48\x4C\x71\x7F\x66\x45\x53"+0x4063FD44).s, /*m_flFlashDuration*/XorStr<0x3C,18,0x4EA121B8>("\x51\x62\x58\x53\x06\x2D\x23\x30\x2C\x01\x33\x35\x29\x3D\x23\x24\x22"+0x4EA121B8).s, FlashProxy );
 	g_pNetvarManager->HookRecvProp( /*DT_ParticleSmokeGrenade*/XorStr<0x96,24,0x1551A9A9>("\xD2\xC3\xC7\xC9\xFB\xE9\xE8\xF4\xFD\xF3\xC5\xF2\xCF\xCC\xCF\xC0\xE1\xD5\xCD\xC7\xCB\xCF\xC9"+0x1551A9A9).s, /*m_flSpawnTime*/XorStr<0x67,14,0x5D98EEC8>("\x0A\x37\x0F\x06\x38\x1C\x0C\x19\x01\x24\x18\x1F\x16"+0x5D98EEC8).s, SmokeProxy );
 
-	printconsole( /* Hooks done...\n*/XorStr<0xEE,16,0x806644F3>("\xCE\xA7\x9F\x9E\x99\x80\xD4\x91\x99\x99\x9D\xD7\xD4\xD5\xF6"+0x806644F3).s );
+	//printconsole( /* Hooks done...\n*/XorStr<0xEE,16,0x806644F3>("\xCE\xA7\x9F\x9E\x99\x80\xD4\x91\x99\x99\x9D\xD7\xD4\xD5\xF6"+0x806644F3).s );
 
-
+	printconsole("[2] Done");
 }
 
 void UnHook( void )
