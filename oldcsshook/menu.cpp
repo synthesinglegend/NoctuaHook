@@ -2,6 +2,6 @@
 n_menu gn_menu;
 void n_menu::render( )
 {
-
+  std::string poop;
 
 }

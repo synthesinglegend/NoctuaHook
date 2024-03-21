@@ -472,17 +472,31 @@ void smart(BasePlayer* Entity)
 }
 void Resolver::Think(BasePlayer* Entity)
 {
-	void smart(BasePlayer);
-	auto animstate = Entity->GetAnimstate();
-	bool fl_foword = fabsf(g_Stuff.GuwopNormalize(get_angle(Entity) - get_foword_yaw(Entity))) < 90.f;
-	int fl_shots = (g_iBulletsFired[Entity->entindex()]);
-	switch (g_iBulletsFired[Entity->entindex()] % 2) {
-	case 0: {
-		Entity->m_angEyeAngles().y -= 75.f; // *(fl_foword ? -35 : 35);
-	} break;
-	case 1: {
-		Entity->m_angEyeAngles().y += 75.f;
-	} break;
+	auto animstate = Entity->GetAnimstate( );
+	bool fl_foword = fabsf( g_Stuff.GuwopNormalize( get_angle( Entity ) - get_foword_yaw( Entity ) ) ) < 90.f;
+	int fl_shots = ( g_iBulletsFired[ Entity->entindex( ) ] );
+	switch ( g_iBulletsFired[ Entity->entindex( ) ] % 5 )
+	{
+		case 0:
+		{
+			Entity->m_angEyeAngles( ).y -= 0.f; // *(fl_foword ? -35 : 35);
+		} break;
+		case 1:
+		{
+			Entity->m_angEyeAngles( ).y += 45.f;
+		} break;
+		case 2:
+		{
+			Entity->m_angEyeAngles( ).y -= 45.f;
+		} break;
+		case 3:
+		{
+			Entity->m_angEyeAngles( ).y += 75.f;
+		} break;
+		case 4:
+		{
+			Entity->m_angEyeAngles( ).y -= 75.f;
+		} break;
 	}
 	animstate->m_flGoalFeetYaw = animstate->m_flCurrentFeetYaw;
 	animstate->m_flLastTurnTime = 0.f;
