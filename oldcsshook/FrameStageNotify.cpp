@@ -158,7 +158,7 @@ void __fastcall Hooked_FrameStageNotify(void* ecx, void* edx, ClientFrameStage_t
 			else
 				g_pEngineClient->ExecuteClientCmd("firstperson");
 		} 
-		//	animation_fix(LocalPlayer);
+			//animation_fix(LocalPlayer);
 	}
 
 

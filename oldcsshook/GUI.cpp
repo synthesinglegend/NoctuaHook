@@ -1,6 +1,7 @@
 #include "Main.h"
 #include "XorStr.h"
-
+#include <filesystem>
+#include <fstream>
 GUI g_GUI;
 
 
@@ -15,8 +16,13 @@ std::string GetExtension(const std::string& target)
 
 	return extension;
 }
+BOOL DirectoryExists( LPCTSTR szPath )
+{
+	DWORD dwAttrib = GetFileAttributes( szPath );
 
-
+	return ( dwAttrib != INVALID_FILE_ATTRIBUTES &&
+					 ( dwAttrib & FILE_ATTRIBUTE_DIRECTORY ) );
+}
 bool GUI::ShouldDisableInput()
 {
 	if (bMouse)
@@ -1351,12 +1357,7 @@ else if (tab_guisection.activetabup == 2) {
 			CheckBox(RIGHT, g_CVars.Miscellaneous.BunnyHop, "BunnyHop");
 			CheckBox(RIGHT, g_CVars.Miscellaneous.AutoStrafe, "AutoStrafer");
 
-			if (g_CVars.Miscellaneous.CircleStrafe)
-			{
-				Section(false, RIGHT, 2, "Circle Strafe Adjusment");
-				SliderInt(RIGHT, true, 200, 0, 32, g_CVars.Miscellaneous.RotationValue, "Rotate Division");
-				SliderInt(RIGHT, true, 200, 0, 32, g_CVars.Miscellaneous.TickValue, "Simulation Ticks");
-			}
+	
 
 
 			Section(false, RIGHT, 2, "Sound");
@@ -1396,6 +1397,8 @@ else if (tab_guisection.activetabup == 2) {
 			else if (itemheight[1] > itemheight[0]) g_CVars.Menu.h = itemheight[1] - menu.y + 65;
 		}
 	}
+	
+
 	else if (tab_guisection.activetabup == 4) {
 		if (activetabConfig == 1) {
 			itemheight[0] = menu.y + tabs[1].h + 65;
@@ -1410,7 +1413,11 @@ else if (tab_guisection.activetabup == 2) {
 				char szPath[MAX_PATH];
 
 				GetModuleFileNameA(g_Config.m_hModule, szPath, MAX_PATH);
-
+				if ( !DirectoryExists( L"C:\\NoctuaHook\\" ) )
+				{
+					std::filesystem::create_directory( "C:\\NoctuaHook\\" );
+					std::ofstream output( "C:\\NoctuaHook\\default.cfg" );
+				}
 				std::string strPath("C:\\NoctuaHook\\");
 
 
@@ -1445,7 +1452,7 @@ else if (tab_guisection.activetabup == 2) {
 					FindClose(hFind);
 				}
 
-				Section(true, LEFT, size_section + 2, "Config List");
+				Section(true, LEFT, size_section + 3, "Config List");
 
 
 
@@ -1456,8 +1463,8 @@ else if (tab_guisection.activetabup == 2) {
 
 				//g_GUI.itemheight[LEFT] += 27;
 
-				int x = g_GUI.columns[LEFT] + 15;
-				int y = g_GUI.itemheight[LEFT] + 35;
+				int x = g_GUI.columns[LEFT] + 12;
+				int y = g_GUI.itemheight[LEFT] + 38;
 
 				int w = 123;
 
@@ -1496,7 +1503,7 @@ else if (tab_guisection.activetabup == 2) {
 
 				ButtonBox(LEFT, g_CVars.Miscellaneous.Load, "Load");
 				ButtonBox(LEFT, g_CVars.Miscellaneous.Save, "Save");
-
+				ButtonBox( LEFT, g_CVars.Miscellaneous.Open, "Open Configs Folder" );
 
 
 				if (itemheight[0] > itemheight[1]) g_CVars.Menu.h = itemheight[0] - menu.y + 65;
@@ -1710,7 +1717,11 @@ else if (tab_guisection.activetabup == 2) {
 			g_Config.Save(g_CVars.Miscellaneous.ConfigName);
 			g_CVars.Miscellaneous.Save = false;
 		}
-
+		if ( g_CVars.Miscellaneous.Open )
+		{
+			ShellExecute( NULL, NULL, L"C:\\NoctuaHook", NULL, NULL, SW_SHOWNORMAL );
+			g_CVars.Miscellaneous.Open = false;
+		}
 		Menu(g_CVars.Menu.x, g_CVars.Menu.y, g_CVars.Menu.w, g_CVars.Menu.h);
 		g_Stuff.Mouse.Draw(g_CVars.Colors.maincolor, g_CVars.Colors.mouseoutline);
 

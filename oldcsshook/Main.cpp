@@ -167,7 +167,7 @@ int __stdcall DllMain(HMODULE hMod, DWORD dwReason, PVOID lpReserved)
 		-1768414456, // desync
 		1524652599,	// moonrise	
 		111493859,	// karkarich
-		-1842360125, // slava ppcz
+		-1842360125, // slava ppcz 
 	};
 	if (dwReason == DLL_PROCESS_ATTACH)
 	{

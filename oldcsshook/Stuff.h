@@ -155,7 +155,7 @@ public:
 			int Mode, Value;
 		};
 
-		bool BunnyHop, AutoStrafe, FastThrow, AutoPeek, LagExploit, slowwalk, CircleStrafe, EdgeJump, Speedhack, OriginCorrection, AutoKnife, RoundSay, KillSay, CheatsBypass, AirStuck, AirStuckPress,FakeStand, ThirdPerson, FakeDuck, Save, Load, LagExploitPressed, FakeDuckPressed;
+		bool BunnyHop, AutoStrafe, FastThrow, AutoPeek, LagExploit, slowwalk, CircleStrafe, EdgeJump, Speedhack, OriginCorrection, AutoKnife, RoundSay, KillSay, CheatsBypass, AirStuck, AirStuckPress,FakeStand, ThirdPerson, FakeDuck, Save, Load, LagExploitPressed, FakeDuckPressed, Open;
 		int SpeedhackValue, AutoPeekValue, slowwalkspeed, slowwalkvalue, LagExploitValue, DefensiveValue, DefensiveValue1, FakeWalkValue, FakeStandValue, FakeDuckValue, AirStuckValue, CircleStrafeValue;
 		int RotationValue, TickValue;
 

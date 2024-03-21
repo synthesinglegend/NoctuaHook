@@ -581,6 +581,7 @@ void AntiAim( BasePlayer* LocalPlayer, CUserCmd* pCmd, int LagValue )
 	pass = false;
 }
 
+
 void sendcmd( const char* input, ... )
 { 
 	va_list va_alist;

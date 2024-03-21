@@ -1311,6 +1311,89 @@ void segstrafer(CUserCmd* pCmd, BasePlayer* LocalPlayer)
 	return;
 }
 static float CircleYaw = 0.f, OldYaw = 0.f;
+void CircleStrafer( CUserCmd* pCmd, BasePlayer* LocalPlayer )
+{
+	if ( LocalPlayer->m_MoveType( ) != MOVETYPE_WALK ) return;
+
+	auto Velocity = LocalPlayer->m_vecVelocity( );
+	Velocity.z = 0;
+
+	static bool Switch = false;
+	float SwitchFloat = ( Switch ) ? 1.f : -1.f;
+	Switch = !Switch;
+
+	static bool in_strafing = false;
+
+	if ( g_CVars.Miscellaneous.CircleStrafeValue && g_CVars.Miscellaneous.CircleStrafe )
+	{
+		float tmp = GetDegreeFromVelocity( Velocity.Length2D( ) );
+		CircleYaw = g_Stuff.GuwopNormalize( CircleYaw + tmp );
+
+		//float v14 = GetVelocityYawStep( Velocity, tmp );
+		//float tickrate = 1 / g_pGlobals->interval_per_tick;
+
+		//if( v14 != 0.f ) CircleYaw += ( ( g_pGlobals->interval_per_tick * tickrate ) * v14 ) * v14;
+
+		g_Stuff.viewangles_old.y = g_Stuff.GuwopNormalize( CircleYaw );
+		pCmd->sidemove = -450.f;
+		return;
+	}
+
+	if ( LocalPlayer->m_fFlags( ) & FL_ONGROUND ) return;
+
+	if ( pCmd->forwardmove > 0.f ) pCmd->forwardmove = 0.f;
+
+	auto StrafeAngle = RAD2DEG( atan( 15.f / Velocity.Length2D( ) ) );
+	//	auto StrafeAngle = 850.f / Velocity.Length2D( );
+
+	if ( StrafeAngle > 90.f ) StrafeAngle = 90.f;
+	else if ( StrafeAngle < 0.f ) StrafeAngle = 0.f;
+
+	auto YawDelta = g_Stuff.GuwopNormalize( g_Stuff.viewangles_old.y - OldYaw );
+	OldYaw = g_Stuff.viewangles_old.y;
+
+	if ( YawDelta > 0.f ) pCmd->sidemove = -450.f;
+	else if ( YawDelta < 0.f ) pCmd->sidemove = 450.f;
+
+	auto AbsYawDelta = abs( YawDelta );
+
+	if ( AbsYawDelta <= StrafeAngle || AbsYawDelta >= 30.f )
+	{
+		QAngle VelocityAngles;
+		VectorAngles( Velocity, VelocityAngles );
+
+		auto VelocityAngleYawDelta = g_Stuff.GuwopNormalize( g_Stuff.viewangles_old.y - VelocityAngles.y );
+		auto VelocityDegree = 15.f; GetDegreeFromVelocity( Velocity.Length2D( ) ) * 2.f; // retrack value
+
+		if ( VelocityAngleYawDelta <= VelocityDegree || Velocity.Length2D( ) <= 15.f )
+		{
+			if ( -( VelocityDegree ) <= VelocityAngleYawDelta || Velocity.Length2D( ) <= 15.f )
+			{
+				g_Stuff.viewangles_old.y += ( StrafeAngle * SwitchFloat );
+				pCmd->sidemove = 450.f * SwitchFloat;
+			}
+			else
+			{
+				g_Stuff.viewangles_old.y = VelocityAngles.y - VelocityDegree;
+				pCmd->sidemove = 450.f;
+			}
+		}
+		else
+		{
+			g_Stuff.viewangles_old.y = VelocityAngles.y + VelocityDegree;
+			pCmd->sidemove = -450.f;
+		}
+	}
+
+	pCmd->buttons &= ~( IN_MOVELEFT | IN_MOVERIGHT | IN_FORWARD | IN_BACK );
+
+	if ( pCmd->sidemove < 0.f ) pCmd->buttons |= IN_MOVELEFT;
+	else pCmd->buttons |= IN_MOVERIGHT;
+
+	if ( pCmd->forwardmove < 0.f ) pCmd->buttons |= IN_BACK;
+	else pCmd->buttons |= IN_FORWARD;
+}
+
 void BigPolishAutostrafer( CUserCmd* pCmd, BasePlayer* LocalPlayer ) 
 {
 	if( LocalPlayer->m_MoveType( ) != MOVETYPE_WALK ) return;
@@ -1324,20 +1407,6 @@ void BigPolishAutostrafer( CUserCmd* pCmd, BasePlayer* LocalPlayer )
 	
 	static bool in_strafing = false;
 	
-	if (g_CVars.Miscellaneous.CircleStrafe && GetAsyncKeyState(g_CVars.Miscellaneous.CircleStrafeValue))
-	{
-		float tmp = GetDegreeFromVelocity( Velocity.Length2D( ) );
-		CircleYaw = g_Stuff.GuwopNormalize( CircleYaw + tmp );
-		
-		float v14 = GetVelocityYawStep( Velocity, tmp );
-		float tickrate = 1 / g_pGlobals->interval_per_tick;
-
-		if( v14 != 0.f ) CircleYaw += ( ( g_pGlobals->interval_per_tick * tickrate ) * v14 ) * v14;
-		
-		g_Stuff.viewangles_old.y = g_Stuff.GuwopNormalize( CircleYaw );
-		pCmd->sidemove = -450.f;
-		return;
-	}
 	
 	if( LocalPlayer->m_fFlags( ) & FL_ONGROUND ) return;
 	

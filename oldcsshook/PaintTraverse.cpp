@@ -992,9 +992,9 @@ void __fastcall Hooked_PaintTraverse( void* ptr, int edx, unsigned int vguiPanel
 				//if (player->() == 0) return;
 
 				if (g_pEngineClient->IsInGame())
-				{
-					m_pEngineEffects->EnergySplash(player->GetAbsOrigin(), Vector(0, 0, 0), true);
-					//m_pEngineEffects->
+				{ 
+					m_pEngineEffects->Ricochet( player->GetAbsOrigin( ), Vector( 0, 0, 0 ) ); 
+					//m_pEngineEffects->EnergySplash(player->GetAbsOrigin(), Vector(0, 0, 0), true);		
 				}
 			}
 
