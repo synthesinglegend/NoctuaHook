@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Hack">
+      <UniqueIdentifier>{19c478c8-e91d-4a11-b6fc-bac61aed570a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\Stuff">
+      <UniqueIdentifier>{6d8fed9d-93fa-4254-a310-c1de287ea5ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\Stuff\hStuff">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Hack\Stuff\hDetourSimple">
+      <UniqueIdentifier>{2255d91a-4fb7-448d-a5c5-c8f9d0a19ee3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\Aimbot">
+      <UniqueIdentifier>{beedae12-13c4-4de7-ac98-c023becee169}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\Event">
+      <UniqueIdentifier>{c2ab3769-52eb-4bb5-a8f9-2bc40a893da8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\FIXMELATER">
+      <UniqueIdentifier>{0a9650bb-fdb8-4260-a02c-b35e2d42da86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\Config">
+      <UniqueIdentifier>{89e1a29c-55d5-45d0-8626-e9548a73a842}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\Visual">
+      <UniqueIdentifier>{df9e2e04-6077-40fc-890c-54007e70d089}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\Menu">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Hack\FrameStageNotify">
+      <UniqueIdentifier>{d01c595e-e1f9-4787-a344-0391c475cda8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\Interpolation">
+      <UniqueIdentifier>{f4163862-cf8e-4ebc-9d92-ee50f4dac89c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\SendMove">
+      <UniqueIdentifier>{b97ef91c-2870-4176-9b00-643416ceede8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\SendMove\RedirectionBytes">
+      <UniqueIdentifier>{69d4cda3-689b-470a-b175-49eaf433da32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\LagComp">
+      <UniqueIdentifier>{133ddef2-69e1-4034-9622-35aeff7d4241}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\LagComp\Resolver">
+      <UniqueIdentifier>{dbc2a331-c173-4368-a273-9a22cc0993b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\protection">
+      <UniqueIdentifier>{4b003cde-ede3-486c-be55-cc08170d1bd8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SdkIncludes.h">
+      <Filter>Hack\Stuff\hStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>Hack\Stuff\hStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="ade32.h">
+      <Filter>Hack\Stuff\hDetourSimple</Filter>
+    </ClInclude>
+    <ClInclude Include="detours2.h">
+      <Filter>Hack\Stuff\hDetourSimple</Filter>
+    </ClInclude>
+    <ClInclude Include="NOTES.h">
+      <Filter>Hack\Stuff\hStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Sounds.h">
+      <Filter>Hack\Stuff\hStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Aimbot.h">
+      <Filter>Hack\Aimbot</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawing.h">
+      <Filter>Hack\Visual</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEventManager.h">
+      <Filter>Hack\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="SDK\NetvarManager.h">
+      <Filter>Hack\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Whitelist.h">
+      <Filter>Hack\FIXMELATER</Filter>
+    </ClInclude>
+    <ClInclude Include="XorStr.h">
+      <Filter>Hack\Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="XOR.h">
+      <Filter>Hack\Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="NoSpread.h">
+      <Filter>Hack\Aimbot</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI.h">
+      <Filter>Hack\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Hack\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="Hook.h">
+      <Filter>Hack\Stuff\hStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Macro.h">
+      <Filter>Hack\Stuff\hStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>Hack\Stuff\hStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Recorder.h">
+      <Filter>Hack\Stuff\hStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Stuff.h">
+      <Filter>Hack\Stuff\hStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="VMTHook.h">
+      <Filter>Hack\Stuff\hStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="animstate.h">
+      <Filter>Hack\Stuff\hStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="..\discord-rpc-sdk-main\msg_queue.h">
+      <Filter>Hack\Stuff\hStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="ieffect.h">
+      <Filter>Hack\Visual</Filter>
+    </ClInclude>
+    <ClInclude Include="Redirection_Bytes\Redirection_Manager.hpp">
+      <Filter>Hack\SendMove\RedirectionBytes</Filter>
+    </ClInclude>
+    <ClInclude Include="Redirection_Bytes\Redirection_Manager_Copy_Table.hpp">
+      <Filter>Hack\SendMove\RedirectionBytes</Filter>
+    </ClInclude>
+    <ClInclude Include="Redirection_Bytes\Redirection_Manager_Redirect_Function.hpp">
+      <Filter>Hack\SendMove\RedirectionBytes</Filter>
+    </ClInclude>
+    <ClInclude Include="Redirection_Bytes\Redirection_Manager_Functions.hpp">
+      <Filter>Hack\SendMove\RedirectionBytes</Filter>
+    </ClInclude>
+    <ClInclude Include="Redirection_Bytes\Redirection_Manager_Redirect_Function_In_Table.hpp">
+      <Filter>Hack\SendMove\RedirectionBytes</Filter>
+    </ClInclude>
+    <ClInclude Include="Redirection_Bytes\Redirection_Manager_Redirect_Table.hpp">
+      <Filter>Hack\SendMove\RedirectionBytes</Filter>
+    </ClInclude>
+    <ClInclude Include="Redirection_Bytes\Redirection_Manager_Restore_Function.hpp">
+      <Filter>Hack\SendMove\RedirectionBytes</Filter>
+    </ClInclude>
+    <ClInclude Include="Redirection_Bytes\Redirection_Manager_Restore_Redirection.hpp">
+      <Filter>Hack\SendMove\RedirectionBytes</Filter>
+    </ClInclude>
+    <ClInclude Include="Redirection_Bytes\Redirection_Manager_Restore_Table.hpp">
+      <Filter>Hack\SendMove\RedirectionBytes</Filter>
+    </ClInclude>
+    <ClInclude Include="Byte_Manager.h">
+      <Filter>Hack\SendMove\RedirectionBytes</Filter>
+    </ClInclude>
+    <ClInclude Include="Byte_Manager_Find_Bytes.h">
+      <Filter>Hack\SendMove\RedirectionBytes</Filter>
+    </ClInclude>
+    <ClInclude Include="Byte_Manager_Copy_Bytes.h">
+      <Filter>Hack\SendMove\RedirectionBytes</Filter>
+    </ClInclude>
+    <ClInclude Include="Byte_Manager_Set_Bytes.h">
+      <Filter>Hack\SendMove\RedirectionBytes</Filter>
+    </ClInclude>
+    <ClInclude Include="Byte_Manager_Functions.h">
+      <Filter>Hack\SendMove\RedirectionBytes</Filter>
+    </ClInclude>
+    <ClInclude Include="BoneCacheHelper.h">
+      <Filter>Hack\Aimbot</Filter>
+    </ClInclude>
+    <ClInclude Include="uid1488.h">
+      <Filter>Hack\Stuff\hStuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Prediction.h">
+      <Filter>Hack\FrameStageNotify</Filter>
+    </ClInclude>
+    <ClInclude Include="SendMove.h">
+      <Filter>Hack\SendMove</Filter>
+    </ClInclude>
+    <ClInclude Include="Read_Packet.h">
+      <Filter>Hack\SendMove</Filter>
+    </ClInclude>
+    <ClInclude Include="Packet_Start.h">
+      <Filter>Hack\SendMove</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>Hack\SendMove</Filter>
+    </ClInclude>
+    <ClInclude Include="Resolver.h">
+      <Filter>Hack\LagComp\Resolver</Filter>
+    </ClInclude>
+    <ClInclude Include="meta_random.h">
+      <Filter>Hack\protection</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Hack\Stuff\hStuff</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ade32.cpp">
+      <Filter>Hack\Stuff\hDetourSimple</Filter>
+    </ClCompile>
+    <ClCompile Include="detours2.cpp">
+      <Filter>Hack\Stuff\hDetourSimple</Filter>
+    </ClCompile>
+    <ClCompile Include="Aimbot.cpp">
+      <Filter>Hack\Aimbot</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawModelEx.cpp">
+      <Filter>Hack\Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawing.cpp">
+      <Filter>Hack\Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="FindMaterial.cpp">
+      <Filter>Hack\Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="PaintTraverse.cpp">
+      <Filter>Hack\Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Hack\Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="Interpolation.cpp">
+      <Filter>Hack\Interpolation</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEventManager.cpp">
+      <Filter>Hack\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="GetUserCmd.cpp">
+      <Filter>Hack\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyEvent.cpp">
+      <Filter>Hack\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\NetvarManager.cpp">
+      <Filter>Hack\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBullets.cpp">
+      <Filter>Hack\Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="Hook.cpp">
+      <Filter>Hack\Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Hack\Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="Macro.cpp">
+      <Filter>Hack\Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="NoSpread.cpp">
+      <Filter>Hack\Aimbot</Filter>
+    </ClCompile>
+    <ClCompile Include="RunCommand.cpp">
+      <Filter>Hack\Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="VMTHook.cpp">
+      <Filter>Hack\Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="Recorder.cpp">
+      <Filter>Hack\Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="Stuff.cpp">
+      <Filter>Hack\Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="OverrideView.cpp">
+      <Filter>Hack\Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Hack\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="Whitelist.cpp">
+      <Filter>Hack\FIXMELATER</Filter>
+    </ClCompile>
+    <ClCompile Include="BoneCacheHelper.cpp">
+      <Filter>Hack\Aimbot</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameStageNotify.cpp">
+      <Filter>Hack\FrameStageNotify</Filter>
+    </ClCompile>
+    <ClCompile Include="Prediction.cpp">
+      <Filter>Hack\FrameStageNotify</Filter>
+    </ClCompile>
+    <ClCompile Include="InPrediction.cpp">
+      <Filter>Hack\FrameStageNotify</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI.cpp">
+      <Filter>Hack\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="SendMove.cpp">
+      <Filter>Hack\SendMove</Filter>
+    </ClCompile>
+    <ClCompile Include="CL_Move.cpp">
+      <Filter>Hack\SendMove</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateMove.cpp">
+      <Filter>Hack\SendMove</Filter>
+    </ClCompile>
+    <ClCompile Include="LagCompensation.cpp">
+      <Filter>Hack\LagComp</Filter>
+    </ClCompile>
+    <ClCompile Include="Resolver.cpp">
+      <Filter>Hack\LagComp\Resolver</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Hack\SendMove</Filter>
+    </ClCompile>
+    <ClCompile Include="mainshit.h">
+      <Filter>Hack\protection</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="noctuahook.rc" />
+  </ItemGroup>
+</Project>
