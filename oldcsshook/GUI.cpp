@@ -560,12 +560,12 @@ void GUI::tabsInit()
 	tabs[4].half = tabs[4].h / 2;
 	tabs[4].secondhalf = tabs[4].h - tabs[4].half;
 
-	tabs[5].x = menu.x + 240;
-	tabs[5].y = menu.y + 15;
-	tabs[5].w = (menu.w * .1f);
-	tabs[5].h = tabheight;
-	tabs[5].half = tabs[5].h / 2;
-	tabs[5].secondhalf = tabs[5].h - tabs[5].half;
+//	tabs[5].x = menu.x + 240;
+	//tabs[5].y = menu.y + 15;
+	//tabs[5].w = (menu.w * .1f);
+	//tabs[5].h = tabheight;
+	//tabs[5].half = tabs[5].h / 2;
+	//tabs[5].secondhalf = tabs[5].h - tabs[5].half;
 }
 
 void GUI::menuRender(int x, int y, int w, int h)
@@ -688,37 +688,31 @@ void GUI::tabsRender()
 	tab_down_ragebot.clear();
 	tab_down_visual.clear();
 
-
-	tab_guisection.AddTabUp(tabs[1].x, menu.y + 15, tabs[1].w, tabs[1].h, 1, xorstr("Legit"), Color(237, 87, 87), Color(255, 255, 255));
-	tab_guisection.AddTabUp(tabs[1].x, menu.y + 15, tabs[1].w, tabs[1].h, 2, xorstr("Rage"), Color(237, 87, 87), Color(255, 255, 255));
-	tab_guisection.AddTabUp(tabs[1].x, menu.y + 15, tabs[1].w, tabs[1].h, 3, xorstr("Visual"), Color(237, 87, 87), Color(255, 255, 255));
-	tab_guisection.AddTabUp(tabs[1].x, menu.y + 15, tabs[1].w, tabs[1].h, 4, xorstr("Misc"), Color(237, 87, 87), Color(255, 255, 255));
-	tab_guisection.AddTabUp(tabs[1].x, menu.y + 15, tabs[1].w, tabs[1].h, 5, xorstr("Config"), Color(237, 87, 87), Color(255, 255, 255));
+	tab_guisection.AddTabUp(tabs[1].x, menu.y + 15, tabs[1].w, tabs[1].h, 1, xorstr("Rage"), Color(237, 87, 87), Color(255, 255, 255));
+	tab_guisection.AddTabUp(tabs[1].x, menu.y + 15, tabs[1].w, tabs[1].h, 2, xorstr("Visual"), Color(237, 87, 87), Color(255, 255, 255));
+	tab_guisection.AddTabUp(tabs[1].x, menu.y + 15, tabs[1].w, tabs[1].h, 3, xorstr("Misc"), Color(237, 87, 87), Color(255, 255, 255));
+	tab_guisection.AddTabUp(tabs[1].x, menu.y + 15, tabs[1].w, tabs[1].h, 4, xorstr("Config"), Color(237, 87, 87), Color(255, 255, 255));
 
 	g_Drawing.MenuStringNormal1(false, false, menu.x + 460, menu.y + 15, Color(255, 255, 255), xorstr("Noctua"));
 	g_Drawing.MenuStringNormal1(false, false, menu.x + 515, menu.y + 15, Color(237, 87, 87), xorstr("Hook"));
 
-	//NIAN CHEAT
-	if (tab_guisection.activetabup == 1) { //# Rage Tab
-		tab_down_ragebot.AddTabDown(tabs[1].x, menu.y + 58, tabs[1].w, tabs[1].h, activetabRage, 1, xorstr("Triggerbot"), Color(237, 87, 87), Color(255, 255, 255));
-	}
 
-	if (tab_guisection.activetabup == 2) { //# Rage Tab
+	if (tab_guisection.activetabup == 1) { //# Rage Tab
 		tab_down_ragebot.AddTabDown(tabs[1].x, menu.y + 58, tabs[1].w, tabs[1].h, activetabRage, 1, xorstr("Aimbot"), Color(237, 87, 87), Color(255, 255, 255));
 		tab_down_ragebot.AddTabDown(tabs[1].x, menu.y + 58, tabs[1].w, tabs[1].h, activetabRage, 2, xorstr("Accuracy"), Color(237, 87, 87), Color(255, 255, 255));
 		tab_down_ragebot.AddTabDown(tabs[1].x, menu.y + 58, tabs[1].w, tabs[1].h, activetabRage, 3, xorstr("HvH"), Color(237, 87, 87), Color(255, 255, 255));
 
 	}
-	else if (tab_guisection.activetabup == 3) { //# Visual Tab
+	else if (tab_guisection.activetabup == 2) { //# Visual Tab
 		tab_down_visual.AddTabDown(tabs[1].x, menu.y + 58, tabs[1].w, tabs[1].h, activetabVisual, 1, xorstr("ESP"), Color(237, 87, 87), Color(255, 255, 255));
 		tab_down_visual.AddTabDown(tabs[1].x, menu.y + 58, tabs[1].w, tabs[1].h, activetabVisual, 2, xorstr("World"), Color(237, 87, 87), Color(255, 255, 255));
 		tab_down_visual.AddTabDown(tabs[1].x, menu.y + 58, tabs[1].w, tabs[1].h, activetabVisual, 3, xorstr("Fog"), Color(237, 87, 87), Color(255, 255, 255));
 	}
-	else if (tab_guisection.activetabup == 4) { //# Misc Tab
+	else if (tab_guisection.activetabup == 3) { //# Misc Tab
 		tab_down_visual.AddTabDown(tabs[1].x, menu.y + 58, tabs[1].w, tabs[1].h, activetabMisc, 1, xorstr("Other"), Color(237, 87, 87), Color(255, 255, 255));
 		tab_down_visual.AddTabDown(tabs[1].x, menu.y + 58, tabs[1].w, tabs[1].h, activetabMisc, 2, xorstr("Exploits"), Color(237, 87, 87), Color(255, 255, 255));
 	}
-	else if (tab_guisection.activetabup == 5) { //# Config Tab
+	else if (tab_guisection.activetabup == 4) { //# Config Tab
 		tab_down_visual.AddTabDown(tabs[1].x, menu.y + 58, tabs[1].w, tabs[1].h, activetabConfig, 1, xorstr("Config"), Color(237, 87, 87), Color(255, 255, 255));
 	}
 }
@@ -976,7 +970,7 @@ void GUI::Menu(int x, int y, int w, int h)
 		if (itemheight[0] > itemheight[1]) g_CVars.Menu.h = itemheight[0] - menu.y + 54;
 		else if (itemheight[1] > itemheight[0]) g_CVars.Menu.h = itemheight[1] - menu.y + 54;
 	}
-	if (tab_guisection.activetabup == 2) {
+	if (tab_guisection.activetabup == 1) {
 		if (activetabRage == 1) {
 			static int key = 40;
 			static bool value = false;
@@ -1188,7 +1182,7 @@ void GUI::Menu(int x, int y, int w, int h)
 
 
 
-else if (tab_guisection.activetabup == 3) {
+else if (tab_guisection.activetabup == 2) {
 	if (activetabVisual == 1) {
 		itemheight[0] = menu.y + tabs[1].h + 65;
 		itemheight[1] = menu.y + tabs[1].h + 65;
@@ -1303,7 +1297,7 @@ else if (tab_guisection.activetabup == 3) {
 		else if (itemheight[1] > itemheight[0]) g_CVars.Menu.h = itemheight[1] - menu.y + 65;
 	}
 	}
-	else if (tab_guisection.activetabup == 4) {
+	else if (tab_guisection.activetabup == 3) {
 		if (activetabMisc == 1) {
 			itemheight[0] = menu.y + tabs[1].h + 65;
 			itemheight[1] = menu.y + tabs[1].h + 65;
@@ -1402,7 +1396,7 @@ else if (tab_guisection.activetabup == 3) {
 			else if (itemheight[1] > itemheight[0]) g_CVars.Menu.h = itemheight[1] - menu.y + 65;
 		}
 	}
-	else if (tab_guisection.activetabup == 5) {
+	else if (tab_guisection.activetabup == 4) {
 		if (activetabConfig == 1) {
 			itemheight[0] = menu.y + tabs[1].h + 65;
 			itemheight[1] = menu.y + tabs[1].h + 65;

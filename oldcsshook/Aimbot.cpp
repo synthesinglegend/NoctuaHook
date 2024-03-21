@@ -629,6 +629,11 @@ void Aimbot::Main(CUserCmd* pCmd, BasePlayer* LocalPlayer)
 			else iSpot = g_CVars.Aimbot.Hitbox;
 		}
 		else iSpot = g_CVars.Aimbot.Hitbox;
+		if ( GetAsyncKeyState( g_CVars.Aimbot.BodyAimValue ) )
+		{
+			iSpot = HITBOX_CHEST;
+		}
+		else iSpot = g_CVars.Aimbot.Hitbox;
 		/*
 		if (true)
 		{
