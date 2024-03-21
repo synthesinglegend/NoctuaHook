@@ -54,6 +54,9 @@
     <Filter Include="Hack\protection">
       <UniqueIdentifier>{4b003cde-ede3-486c-be55-cc08170d1bd8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Hack\new gui">
+      <UniqueIdentifier>{f5fcb353-0c3f-409e-9483-1a2d4b84fa8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SdkIncludes.h">
@@ -203,6 +206,12 @@
     <ClInclude Include="resource.h">
       <Filter>Hack\Stuff\hStuff</Filter>
     </ClInclude>
+    <ClInclude Include="new gui\zgui.hpp">
+      <Filter>Hack\new gui</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>Hack\new gui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ade32.cpp">
@@ -315,6 +324,12 @@
     </ClCompile>
     <ClCompile Include="mainshit.h">
       <Filter>Hack\protection</Filter>
+    </ClCompile>
+    <ClCompile Include="new gui\zgui.cpp">
+      <Filter>Hack\new gui</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>Hack\new gui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

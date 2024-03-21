@@ -29,7 +29,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -144,11 +144,13 @@
     <ClInclude Include="GUI.h" />
     <ClInclude Include="Hook.h" />
     <ClInclude Include="ieffect.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="meta_random.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="md5.h" />
     <ClInclude Include="Move.h" />
+    <ClInclude Include="new gui\zgui.hpp" />
     <ClInclude Include="NoSpread.h" />
     <ClInclude Include="NOTES.h" />
     <ClInclude Include="Packet_Start.h" />
@@ -202,6 +204,8 @@
     <ClCompile Include="Macro.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="mainshit.h" />
+    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="new gui\zgui.cpp" />
     <ClCompile Include="NoSpread.cpp" />
     <ClCompile Include="PaintTraverse.cpp" />
     <ClCompile Include="Prediction.cpp" />

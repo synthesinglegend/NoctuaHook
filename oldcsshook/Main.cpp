@@ -3,7 +3,6 @@
 #include <map>
 #include <assert.h>
 #include <tchar.h>
-
 typedef BOOL(WINAPI* SetCursorPosFunc)(int x, int y);
 SetCursorPosFunc SetCursorPosPtr = NULL;
 

@@ -1413,7 +1413,7 @@ else if (tab_guisection.activetabup == 2) {
 				char szPath[MAX_PATH];
 
 				GetModuleFileNameA(g_Config.m_hModule, szPath, MAX_PATH);
-				if ( !DirectoryExists( L"C:\\NoctuaHook\\" ) )
+				if ( !DirectoryExists( "C:\\NoctuaHook\\" ) )
 				{
 					std::filesystem::create_directory( "C:\\NoctuaHook\\" );
 					std::ofstream output( "C:\\NoctuaHook\\default.cfg" );
@@ -1719,7 +1719,7 @@ else if (tab_guisection.activetabup == 2) {
 		}
 		if ( g_CVars.Miscellaneous.Open )
 		{
-			ShellExecute( NULL, NULL, L"C:\\NoctuaHook", NULL, NULL, SW_SHOWNORMAL );
+			ShellExecute( NULL, NULL, "C:\\NoctuaHook", NULL, NULL, SW_SHOWNORMAL );
 			g_CVars.Miscellaneous.Open = false;
 		}
 		Menu(g_CVars.Menu.x, g_CVars.Menu.y, g_CVars.Menu.w, g_CVars.Menu.h);

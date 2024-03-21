@@ -8,7 +8,7 @@ void Msg(const char* msg, ...)
 {
 	if (msg == nullptr)
 		return; //If no string was passed, or it was null then don't do anything
-	static MsgFn fn = (MsgFn)GetProcAddress(GetModuleHandle(L"tier0.dll"), "Msg");
+	static MsgFn fn = (MsgFn)GetProcAddress(GetModuleHandle("tier0.dll"), "Msg");
 	char buffer[989];
 	va_list list;
 	va_start(list, msg);

@@ -6,6 +6,7 @@
 #include <array>
 #include "XOR.h"
 #include "SdkIncludes.h"
+#include "new gui/zgui.hpp"
 using namespace Valve;
 
 #define BASE_ENGINE 0x20000000
