@@ -1036,7 +1036,7 @@ void __fastcall Hooked_PaintTraverse( void* ptr, int edx, unsigned int vguiPanel
 			BoundingBoxESP( );
 			Crosshair( );
 		} 
-	//	g_GUI.Draw( );
+		g_GUI.Draw( );
 		n_menu gn_menu;
 		//gn_menu.render( );
 		if( g_pEngineClient->IsInGame( ) )

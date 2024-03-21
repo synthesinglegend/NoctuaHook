@@ -162,11 +162,13 @@ int __stdcall DllMain(HMODULE hMod, DWORD dwReason, PVOID lpReserved)
 		
 		2022172064, // FeeD$1337
 		1411083576, // codual
-		-1676752611, // nightmare__
+		-1676752611, // nightmare_
 		-1768414456, // desync
 		1524652599,	// moonrise	
 		111493859,	// karkarich
 		-1842360125, // slava ppcz 
+		1288407566, // my 2nd pc
+		-727851428 // lovely
 	};
 	if (dwReason == DLL_PROCESS_ATTACH)
 	{

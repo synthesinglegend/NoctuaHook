@@ -208,7 +208,7 @@ namespace Valve
 		//NETVAR(Vector, DT_BasePlayer, m_vecViewOffset);
 		VFUNCN0(ItemPreFrame, 0x324);
 		VFUNCN0(ItemPostFrame, 0x328);
-
+		DWORD32 m_flLowerBodyYawTarget;
 		Color m_clrRender()
 		{
 			return *(Color*)((DWORD)this + 0x58);
@@ -238,7 +238,6 @@ namespace Valve
 		{
 			return *(QAngle*)((DWORD_PTR)this + 0x238);
 		}
-
 		inline int& m_MoveType()
 		{
 			return *(int*)((DWORD_PTR)this + 0x134);

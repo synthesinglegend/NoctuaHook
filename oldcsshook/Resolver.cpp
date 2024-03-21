@@ -470,33 +470,40 @@ void smart(BasePlayer* Entity)
 	}
 
 }
+
 void Resolver::Think(BasePlayer* Entity)
 {
-	auto animstate = Entity->GetAnimstate( );
+	auto animstate = Entity->GetAnimstate();
+
+	float m_flLowerBodyYawTarget = Entity->m_angEyeAngles().y - animstate->m_flGoalFeetYaw + 360;
 	bool fl_foword = fabsf( g_Stuff.GuwopNormalize( get_angle( Entity ) - get_foword_yaw( Entity ) ) ) < 90.f;
 	int fl_shots = ( g_iBulletsFired[ Entity->entindex( ) ] );
-	switch ( g_iBulletsFired[ Entity->entindex( ) ] % 5 )
+	switch ( g_iBulletsFired[ Entity->entindex( ) ] % 8 )
 	{
-		case 0:
-		{
-			Entity->m_angEyeAngles( ).y -= 0.f; // *(fl_foword ? -35 : 35);
-		} break;
-		case 1:
-		{
-			Entity->m_angEyeAngles( ).y += 45.f;
-		} break;
-		case 2:
-		{
-			Entity->m_angEyeAngles( ).y -= 45.f;
-		} break;
-		case 3:
-		{
-			Entity->m_angEyeAngles( ).y += 75.f;
-		} break;
-		case 4:
-		{
-			Entity->m_angEyeAngles( ).y -= 75.f;
-		} break;
+	case 0:
+		Entity->m_angEyeAngles().y = animstate->m_flCurrentFeetYaw - 180.f;
+		break;
+	case 1:
+		Entity->m_angEyeAngles().y = animstate->m_flCurrentFeetYaw + 180.f;
+		break;
+	case 2:
+		Entity->m_angEyeAngles().y = animstate->m_flLowerBodyYawTarget;
+		break;
+	case 3:
+		Entity->m_angEyeAngles().y = animstate->m_flLowerBodyYawTarget + 135.f;
+		break;
+	case 4:
+		Entity->m_angEyeAngles().y = animstate->m_flLowerBodyYawTarget - 135.f;
+		break;
+	case 5:
+		Entity->m_angEyeAngles().y = animstate->m_flLowerBodyYawTarget + 110.f;
+		break;
+	case 6:
+		Entity->m_angEyeAngles().y = animstate->m_flLowerBodyYawTarget - 110.f;
+		break;
+	case 7:
+		Entity->m_angEyeAngles().y = animstate->m_flCurrentFeetYaw;
+		break;
 	}
 	animstate->m_flGoalFeetYaw = animstate->m_flCurrentFeetYaw;
 	animstate->m_flLastTurnTime = 0.f;

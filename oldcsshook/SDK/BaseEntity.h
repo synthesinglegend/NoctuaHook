@@ -31,6 +31,7 @@ namespace Valve
 		NETVAR(bool, DT_BaseEntity, m_bSpotted);
 		NETVAR(Vector, DT_BaseEntity, m_vecOrigin);
 		//NETVAR(Vector, DT_BaseEntity, m_vecVelocity);
+		NETVAR(int, DT_BasePlayer, IsDead);
 		NETVAR(int, DT_BasePlayer, m_nTickBase);
 		NETVAR(int, DT_CSPlayer, m_ArmorValue);
 		NETVAR(int, DT_BaseAnimating, m_nHitboxSet);

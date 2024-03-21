@@ -1142,7 +1142,7 @@ void GUI::Menu(int x, int y, int w, int h)
 
 
 			Rage_FakeLag.Dropdown(RIGHT, 0, ARRAYSIZE(FakeLag), g_CVars.Miscellaneous.Fakelag.Mode, "FakeLag", FakeLag, FakeLagActive);
-
+			
 			if (g_CVars.Miscellaneous.AntiAim.Active)
 			{
 				Section(false, LEFT, 10, "Anti-Aim Adjusment");
@@ -1162,6 +1162,8 @@ void GUI::Menu(int x, int y, int w, int h)
 				Rage_AntiAim.Dropdown(RIGHT, 0, 4, g_CVars.Miscellaneous.AntiAim.WallDetectionMode, "Freestand Mode", Edge, EdgeActive);
 
 			}
+			if (itemheight[0] > itemheight[1]) g_CVars.Menu.h = itemheight[0] - menu.y + 65;
+			else if (itemheight[1] > itemheight[0]) g_CVars.Menu.h = itemheight[1] - menu.y + 65;
 			//	Section(false, LEFT, 2, "Test Section Left x2");
 			//	CheckBox(LEFT, g_CVars.Miscellaneous.AntiAim.Active, "q1e q6qe4EW");
 			//	CheckBox(LEFT, g_CVars.Miscellaneous.AntiAim.Active, "B1F56");
@@ -1181,8 +1183,8 @@ void GUI::Menu(int x, int y, int w, int h)
 			Rage_FakeLag.ClearVecDropdownsData();
 			Rage_FakeLag.ClearVecColorsData();
 
-			if (itemheight[0] > itemheight[1]) g_CVars.Menu.h = itemheight[0] - menu.y + 65;
-			else if (itemheight[1] > itemheight[0]) g_CVars.Menu.h = itemheight[1] - menu.y + 65;
+			//if (itemheight[0] > itemheight[1]) g_CVars.Menu.h = itemheight[0] - menu.y + 65;
+			//else if (itemheight[1] > itemheight[0]) g_CVars.Menu.h = itemheight[1] - menu.y + 65;
 		}
 	}
 

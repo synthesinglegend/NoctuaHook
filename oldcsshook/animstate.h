@@ -1623,6 +1623,7 @@ namespace Valve
 		virtual void ClearAnimationState() = 0;
 		virtual void ClearAnimationLayers() = 0;
 		virtual const Vector& GetRenderAngles() = 0;
+		
 		virtual bool ShouldUpdateAnimState() = 0;
 		virtual void ComputeSequences(CStudioHdr* pStudioHdr) = 0;
 		virtual Activity CalcMainActivity() = 0;
@@ -1677,6 +1678,7 @@ namespace Valve
 		Activity m_eCurrentMainSequenceActivity;
 
 		float				m_flGaitYaw;
+		float m_flLowerBodyYawTarget;
 		float				m_flStoredCycle;
 
 		float			   m_vLastMovePose[2];
