@@ -85,7 +85,7 @@ void cGameEvent::FireGameEvent(IGameEvent* event)
 	if (strcmp(eventName, /*player_connect*/XorStr<0x1F, 15, 0xE6504059>("\x6F\x4C\x40\x5B\x46\x56\x7A\x45\x48\x46\x47\x4F\x48\x58" + 0xE6504059).s) == 0)
 	{
 		std::string playerinfo = /*echo */XorStr<0xB3, 6, 0x7C8193A2>("\xD6\xD7\xDD\xD9\x97" + 0x7C8193A2).s;
-		playerinfo += protect("[noctuahook]");
+		playerinfo += protect("[Apotheosis]");
 		playerinfo += ", ";
 		playerinfo += event->GetString( /*name*/XorStr<0x98, 5, 0x86D9D33B>("\xF6\xF8\xF7\xFE" + 0x86D9D33B).s, "");
 		playerinfo += ", ";
@@ -110,7 +110,7 @@ void cGameEvent::FireGameEvent(IGameEvent* event)
 
 	if (strcmp(eventName, /*round_start*/XorStr<0x2F, 12, 0x8913A370>("\x5D\x5F\x44\x5C\x57\x6B\x46\x42\x56\x4A\x4D" + 0x8913A370).s) == 0)
 	{
-		if (g_CVars.Miscellaneous.RoundSay) g_pEngineClient->ClientCmd(protect("say noctuahook"));
+		if (g_CVars.Miscellaneous.RoundSay) g_pEngineClient->ClientCmd(protect("say Apotheosis"));
 	}
 
 	if (strcmp(eventName, /*player_hurt*/XorStr<0xC5, 12, 0x41F135CF>("\xB5\xAA\xA6\xB1\xAC\xB8\x94\xA4\xB8\xBC\xBB" + 0x41F135CF).s) == 0)
@@ -152,7 +152,7 @@ void cGameEvent::FireGameEvent(IGameEvent* event)
 			if (!g_pEngineClient->GetPlayerInfo(iVictim, &killed_info))
 				return;
 
-			std::string ss = ("[noctuahook] ");
+			std::string ss = ("[Apotheosis] ");
 			ss += ("hit ");
 			ss += killed_info.name;
 			ss += " in the ";
@@ -169,7 +169,7 @@ void cGameEvent::FireGameEvent(IGameEvent* event)
 
 			Developer->SetValue(1);
 			con_filter_enable->SetValue(2);
-			con_filter_text->SetValue("[noctuahook] ");
+			con_filter_text->SetValue("[Apotheosis] ");
 
 			Msg(ss.c_str());
 		}
@@ -193,21 +193,21 @@ void cGameEvent::FireGameEvent(IGameEvent* event)
 			{
 				int pidoras = rand() % (0, 32);
 				if (pidoras == 0)
-					g_pEngineClient->ClientCmd(protect("say NoctuaHook`ed!"));
+					g_pEngineClient->ClientCmd(protect("say Apotheosis`ed!"));
 				if (pidoras == 1)
-					g_pEngineClient->ClientCmd(protect("say Noctua Rezolved u!"));
+					g_pEngineClient->ClientCmd(protect("say Apotheosis Rezolved u!"));
 
 				if (pidoras == 2)
-					g_pEngineClient->ClientCmd(protect("say NoctuaHook on top!"));
+					g_pEngineClient->ClientCmd(protect("say Apotheosis on top!"));
 
 				if (pidoras == 3)
-					g_pEngineClient->ClientCmd(protect("say Noctua Beta!"));
+					g_pEngineClient->ClientCmd(protect("say Apotheosis Beta!"));
 
 				if (pidoras == 4)
-					g_pEngineClient->ClientCmd(protect("say NoctuaHook >> 92% cheats!"));
+					g_pEngineClient->ClientCmd(protect("say Apotheosis >> 93% cheats!"));
 
 				if (pidoras == 5)
-					g_pEngineClient->ClientCmd(protect("say NoctuaHook`ed by NoctuaHook`er!"));
+					g_pEngineClient->ClientCmd(protect("say Apotheosis`ed by Apotheosis`er!"));
 
 				if (pidoras == 6)
 					g_pEngineClient->ClientCmd(protect("say ^_^"));
@@ -225,13 +225,13 @@ void cGameEvent::FireGameEvent(IGameEvent* event)
 					g_pEngineClient->ClientCmd(protect(u8"say (◣_◢)"));
 
 				if (pidoras == 11)
-					g_pEngineClient->ClientCmd(protect("say NoctuaHook? "));
+					g_pEngineClient->ClientCmd(protect("say Apotheosis? "));
 
 				if (pidoras == 12)
-					g_pEngineClient->ClientCmd(protect(u8"say NoctuaHook (◣_◢)"));
+					g_pEngineClient->ClientCmd(protect(u8"say Apotheosis (◣_◢)"));
 
 				if (pidoras == 13)
-					g_pEngineClient->ClientCmd(protect("say NoctuaHook`ed u!"));
+					g_pEngineClient->ClientCmd(protect("say Apotheosis`ed u!"));
 
 				if (pidoras == 14)
 					g_pEngineClient->ClientCmd(protect("say BunnyHop Peeking abuse is forbidden. "));
@@ -255,7 +255,7 @@ void cGameEvent::FireGameEvent(IGameEvent* event)
 					g_pEngineClient->ClientCmd(protect("say funny kill"));
 
 				if (pidoras == 21)
-					g_pEngineClient->ClientCmd(protect("say N0CTUAH00K"));
+					g_pEngineClient->ClientCmd(protect("say 4p0th30$1$"));
 
 				if (pidoras == 22)
 					g_pEngineClient->ClientCmd(protect("say lil the neel"));

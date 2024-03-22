@@ -117,9 +117,9 @@ public:
 		};
 		float skyr, skyb, skyg;
 		float WallsR, WallsG, WallsB;
-		float ASUS, NightMode, ViewModelFOV, FovValue;
+		float ASUS, NightMode, FovValue;
 		bool Radar, ColorWalls, ColorSky, NoSky, NoHands, NoSmoke, NoFlash, NoVisualRecoil, BulletTracer, Impact, ColorFog;
-		int Start, End;
+		int Start, ViewModelFOV, End;
 
 		Color FogColor = Color(255, 255, 255, 255);
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "../../new gui/render.hpp"
+#include "../new gui/render.hpp"
 
 #include <cstdint>
 #include <stack>

@@ -1244,7 +1244,7 @@ else if (tab_guisection.activetabup == 2) {
 
 		Slider(RIGHT, true, 200, 0, 1, g_CVars.Visuals.ASUS, "Asus Walls");
 		Slider(RIGHT, true, 200, 0, 1, g_CVars.Visuals.NightMode, "NightMode");
-		Slider(RIGHT, true, 200, 0, 90, g_CVars.Visuals.ViewModelFOV, "ViewModel Fov");
+		//Slider(RIGHT, true, 200, 0, 90, g_CVars.Visuals.ViewModelFOV, "ViewModel Fov");
 
 
 
@@ -1335,10 +1335,6 @@ else if (tab_guisection.activetabup == 2) {
 			CheckBox(LEFT, g_CVars.Miscellaneous.AntiAim.DuckInAir, "DuckInAir");
 
 			Misc.Keybind(LEFT, &g_CVars.Miscellaneous.FakeDuckValue, value, "FakeDuck");
-
-			CheckBox(LEFT, g_CVars.Miscellaneous.FakeStand, "FakeStand");
-
-			Misc.Keybind(LEFT, &g_CVars.Miscellaneous.FakeStandValue, value21, "FakeStand");
 
 
 			Section(true, RIGHT, 8, "Movement");

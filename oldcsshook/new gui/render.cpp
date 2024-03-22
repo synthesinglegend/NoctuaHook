@@ -1,5 +1,5 @@
 #include "render.hpp"
-#include "../../Main.h"
+#include "../Main.h"
 unsigned long render::main_font;
 
 void render::setup_fonts() {

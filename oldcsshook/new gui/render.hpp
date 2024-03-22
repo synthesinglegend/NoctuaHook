@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include "../SDK/ISurface.h"
-#include "../../new gui/color.hpp"
+#include "../new gui/color.hpp"
 
 namespace render {
 	enum font_flags {
