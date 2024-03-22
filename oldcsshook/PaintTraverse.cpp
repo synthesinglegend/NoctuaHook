@@ -979,7 +979,7 @@ void __fastcall Hooked_PaintTraverse( void* ptr, int edx, unsigned int vguiPanel
 		static ConVar* cvar_xbox_autothrottle = g_pCvar->FindVar( /*xbox_autothrottle*/XorStr<0x1C,18,0xFE51A435>("\x64\x7F\x71\x67\x7F\x40\x57\x57\x4B\x51\x4E\x55\x47\x5D\x5E\x47\x49"+0xFE51A435).s );
 		static ConVar* cvar_xbox_throttlebias = g_pCvar->FindVar( /*xbox_throttlebias*/XorStr<0xB6,18,0x1151B3C8>("\xCE\xD5\xD7\xC1\xE5\xCF\xD4\xCF\xD1\xCB\xB4\xAD\xA7\xA1\xAD\xA4\xB5"+0x1151B3C8).s );
 		static ConVar* cvar_xbox_throttlespoof = g_pCvar->FindVar( /*xbox_throttlespoof*/XorStr<0x90,19,0x3676A912>("\xE8\xF3\xFD\xEB\xCB\xE1\xFE\xE5\xF7\xED\xEE\xF7\xF9\xEE\xEE\xF0\xCF\xC7"+0x3676A912).s );
-
+		gn_menu.render( );
 		if( cvar_xbox_autothrottle->GetInt( ) != 1 ) cvar_xbox_autothrottle->SetValue( 1 );
 		if( cvar_xbox_throttlebias->GetInt( ) != 100 ) cvar_xbox_throttlebias->SetValue( 100 );
 		if( cvar_xbox_throttlespoof->GetInt( ) != 200 ) cvar_xbox_throttlespoof->SetValue( 200 );
@@ -1041,11 +1041,9 @@ void __fastcall Hooked_PaintTraverse( void* ptr, int edx, unsigned int vguiPanel
 			BoundingBoxESP( );
 			Crosshair( );
 		} 
-		
-		
-		
-			printconsole( "entered menu render stage" );
-			gn_menu.render( );
+	
+		//	printconsole( "entered menu render stage" );
+		//	
 			
 		
 		

@@ -15,12 +15,12 @@ void render::line(int x, int y, int x2, int y2, color c) noexcept {
 
 void render::rect(int x, int y, int x2, int y2, color c) noexcept {
 	g_pSurface->DrawSetColorRGBA(c.r, c.g, c.b, c.a);
-	g_pSurface->DrawOutlinedRect(x, y, x2, y2);
+	g_pSurface->DrawOutlinedRect(x, y, x +x2, y + y2);
 }
 
 void render::filled_rect(int x, int y, int x2, int y2, color c) noexcept {
 	g_pSurface->DrawSetColorRGBA(c.r, c.g, c.b, c.a);
-	g_pSurface->DrawFilledRect(x, y, x2, y2);
+	g_pSurface->DrawFilledRect(x, y, x + x2, y +y2);
 }
 
 void render::text(int x, int y, color color, int font, bool center, std::string str) noexcept {
