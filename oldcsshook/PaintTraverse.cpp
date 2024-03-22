@@ -1,6 +1,7 @@
 #include "Main.h"
 #include "XorStr.h"
 #include "menu.h"
+n_menu gn_menu;
 float BOG_TO_GRD(float BOG) {
 	return (180 / M_PI) * BOG;
 }
@@ -936,7 +937,7 @@ void holopanel(BasePlayer* localplayer)
 		}
 	}
 }
-n_menu gn_menu;
+
 
 typedef void( __thiscall* PaintTraverse_t )( void*, unsigned int, bool, bool );
 void __fastcall Hooked_PaintTraverse( void* ptr, int edx, unsigned int vguiPanel, bool forceRepaint, bool allowForce )
@@ -949,8 +950,9 @@ void __fastcall Hooked_PaintTraverse( void* ptr, int edx, unsigned int vguiPanel
 	static ConVar* zoom = g_pCvar->FindVar("zoom_sensitivity_ratio");
 	zoom->GetFloat();
 	zoom->SetValue(0);
-	printconsole("entered menu render stage");
-	gn_menu.render();
+
+	
+
 	PaintTraverseVMT->Function< PaintTraverse_t >(40)(ptr, vguiPanel, forceRepaint, allowForce);
 
 	g_GameEventManager.RegisterSelf( );
@@ -970,7 +972,7 @@ void __fastcall Hooked_PaintTraverse( void* ptr, int edx, unsigned int vguiPanel
         //WriteProcessMemory( GetCurrentProcess( ), ( LPVOID ) dwDisconnectMsg, &msg, sizeof( msg ), 0 );
         //VirtualProtect( ( LPVOID ) dwDisconnectMsg, 4, dwOld, &dwOld );
 
-		g_Drawing.FontInit( );
+		//g_Drawing.FontInit( );
 		g_Whitelist.Init( );
 
 		// leet ruski antiban ))))) xaxaxax
@@ -1039,6 +1041,15 @@ void __fastcall Hooked_PaintTraverse( void* ptr, int edx, unsigned int vguiPanel
 			BoundingBoxESP( );
 			Crosshair( );
 		} 
+		
+		
+		
+			printconsole( "entered menu render stage" );
+			gn_menu.render( );
+			
+		
+		
+	
 		
 		//PaintTraverseVMT->Function< PaintTraverse_t >(40)(ptr, vguiPanel, forceRepaint, allowForce);
 		//g_GUI.Draw( );

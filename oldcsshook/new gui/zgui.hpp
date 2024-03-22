@@ -1,4 +1,5 @@
 #pragma once
+#include "../../new gui/render.hpp"
 
 #include <cstdint>
 #include <stack>
@@ -6,9 +7,12 @@
 #include <string>
 #include <string_view>
 #include <type_traits>
-extern bool menu_open;
+
+
+#define ZGUI_API __declspec(dllexport)
+
 // zgui by zxvnme (https://github.com/zxvnme) and all the community contributors
-#define ZGUI_VER "1.4.5" // the number after second dot is snapshot version.
+#define ZGUI_VER "1.4.8" // the number after second dot is snapshot version.
 /* =============================[general]===============================
  *
  * zgui is an simple framework created to help people with GUI rendering during their game hacking (but not only) journey.
@@ -110,18 +114,17 @@ extern bool menu_open;
 namespace zgui {
 
 	// Multi selectable item.
-	struct multi_select_item { std::string_view name; bool *value; };
+	struct multi_select_item { std::string_view name; bool* value; };
 	// Two dimensional vector.
 	struct vec2 { float x, y; };
-	// Color with 4 paremeters; red, green, blue and alpha.
-	struct color { int r, g, b, a; };
 
 	/// "Proxy" functions definitions.
+	
 	using line_t = std::add_pointer_t<void(int x, int y, int x2, int y2, color color) noexcept>;
 	using rect_t = std::add_pointer_t<void(int x, int y, int x2, int y2, color color) noexcept>;
 	using filled_rect_t = std::add_pointer_t<void(int x, int y, int x2, int y2, color color) noexcept>;
-	using text_t = std::add_pointer_t<void(int x, int y, color color, int font, bool center, const char* text) noexcept>;
-	using get_text_size_t = std::add_pointer_t<void(unsigned long font, const char* text, int& wide, int& tall) noexcept>;
+	using text_t = std::add_pointer_t<void(int x, int y, color color, int font, bool center, std::string text) noexcept>;
+	using get_text_size_t = std::add_pointer_t<void(unsigned long font, std::string text, int& wide, int& tall) noexcept>;
 	using get_frametime = std::add_pointer_t<float() noexcept>;
 	///
 
@@ -150,30 +153,19 @@ namespace zgui {
 	};
 
 	// Flags for text input appereance.
-	// ex: (zgui_text_input_flags_password) will convert text input (ex: "abcdef") to "******"
+	// ex: (zgui_text_input_flags_password) will convert text input (ex: "abcdef") to "******".
 	enum zgui_text_input_flags
 	{
 		zgui_text_input_flags_none = 0,
 		zgui_text_input_flags_password = 1 << 0
 	};
 
-	// zgui controls enumeration.
-	  // WIP
-	enum zgui_controls
+	// Flags for groupboxes appereance.
+	// ex: (zgui_groupbox_flags_title_centered) will center align title of groupbox.
+	enum zgui_groupbox_flags
 	{
-		zgui_checkbox = 1,
-		zgui_toggle_button,
-		zgui_button,
-		zgui_key_bind,
-		zgui_text_input,
-		zgui_slider_int,
-		zgui_slider_float,
-		zgui_combobox,
-		zgui_multi_combobox,
-		zgui_listbox,
-		zgui_clickable_text,
-		zgui_text,
-		zgui_dummy
+		zgui_groupbox_flags_none = 0,
+		zgui_groupbox_flags_title_centered = 1 << 0,
 	};
 
 	enum class zgui_render_type
@@ -191,67 +183,71 @@ namespace zgui {
 		color color;
 		std::string text;
 		vec2 size;
+		int font = 0;
 	};
 
 	struct gui_window_context_t
 	{
 		uint32_t blocking;
 		std::stack<vec2> cursor_pos;
+		std::stack<unsigned long> fonts;
 		std::vector<zgui_control_render_t> render;
 		vec2 position, size;
 		vec2 next_cursor_pos;
 		bool dragging;
 		bool opened;
-		int font;
 		int alpha;
 	};
 
 	// Start Input loop
-	void poll_input(std::string_view window_name);
-	void poll_input(HWND hwnd);
+	ZGUI_API void poll_input(std::string_view window_name);
+	ZGUI_API void poll_input(HWND hwnd);
 
 	// Push cursor position to the stack defined in window context
-	void push_cursor_pos(vec2 pos) noexcept;
+	ZGUI_API void push_cursor_pos(vec2 pos) noexcept;
 	// Pop cursor position from the stack defined in window context
-	vec2 pop_cursor_pos() noexcept;
+	ZGUI_API vec2 pop_cursor_pos() noexcept;
 
-	bool begin_window(std::string_view title, vec2 default_size, unsigned long font, int flags = 0);
-	void end_window() noexcept;
+	// Push font to the stack defined in window context
+	ZGUI_API void push_font(unsigned long font) noexcept;
+	// Pop font from the stack defined in window context
+	ZGUI_API unsigned long pop_font();
 
-	void begin_groupbox(std::string_view title, vec2 size = vec2{ 163,290 }) noexcept;
-	void end_groupbox() noexcept;
+	ZGUI_API bool begin_window(std::string_view title, vec2 default_size, unsigned long font, int flags = 0);
+	ZGUI_API void end_window() noexcept;
 
-	void checkbox(const char* id, bool& value) noexcept;
+	ZGUI_API void begin_groupbox(std::string_view title, vec2 size, int flags = 0) noexcept;
+	ZGUI_API void end_groupbox() noexcept;
 
-	void toggle_button(const char* id, vec2 size, bool& value) noexcept;
-		
-	bool button(const char* id, vec2 size = vec2{ 147,18 }) noexcept;
+	ZGUI_API void checkbox(const char* id, bool& value) noexcept;
 
-	bool tab_button(const char* id, vec2 size, bool value) noexcept;
+	ZGUI_API void toggle_button(const char* id, vec2 size, bool& value) noexcept;
 
-	void key_bind(const char* id, int& value) noexcept;
+	ZGUI_API bool button(const char* id, vec2 size) noexcept;
 
-	void text_input(const char* id, std::string& value, int max_length = 16, int flags = 0) noexcept;
+	ZGUI_API void key_bind(const char* id, int& value) noexcept;
 
-	void slider_int(const char* id, int min, int max, int& value) noexcept;
+	ZGUI_API void text_input(const char* id, std::string& value, int max_length = 16, int flags = 0) noexcept;
 
-	void slider_float(const char* id, float min, float max, float& value) noexcept;
+	ZGUI_API void slider_int(const char* id, int min, int max, int& value) noexcept;
 
-	void combobox(const char*, std::vector<std::string> items, int& value) noexcept;
+	ZGUI_API void slider_float(const char* id, float min, float max, float& value) noexcept;
 
-	void multi_combobox(const char* id, std::vector<multi_select_item> items) noexcept;
+	ZGUI_API void combobox(const char*, std::vector<std::string> items, int& value) noexcept;
 
-	void listbox(const char* id, std::vector<multi_select_item> items) noexcept;
+	ZGUI_API void multi_combobox(const char* id, std::vector<multi_select_item> items) noexcept;
 
-	bool clickable_text(const char* id) noexcept;
+	ZGUI_API void listbox(const char* id, std::vector<multi_select_item> items) noexcept;
 
-	void text(const char* text) noexcept;
+	ZGUI_API bool clickable_text(const char* id) noexcept;
 
-	void dummy() noexcept;
+	ZGUI_API void text(const char* text) noexcept;
 
-	void next_column(int pusher_x = 164, int pusher_y = 34) noexcept;
+	ZGUI_API void dummy() noexcept;
 
-	void same_line(float x_axis = -1) noexcept;
+	ZGUI_API void next_column(int pusher_x = 174, int pusher_y = 14) noexcept;
 
-	void backup_line() noexcept;
+	ZGUI_API void same_line(float x_axis = -1) noexcept;
+
+	ZGUI_API void backup_line() noexcept;
 }

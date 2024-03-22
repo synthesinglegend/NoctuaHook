@@ -408,7 +408,13 @@ void Hook( void )
 	PDWORD* pdwMaterialSystemVMT = ( PDWORD* )g_pMaterialSystem;
 	PDWORD* pdwGameEventManagerVMT = ( PDWORD* )g_pGameEventManager;
 	PDWORD* pdwClientModeVMT = (PDWORD*)g_pClientMode;
-
+	render::setup_fonts( );
+	zgui::functions.draw_line = render::line;
+	zgui::functions.draw_rect = render::rect;
+	zgui::functions.draw_filled_rect = render::filled_rect;
+	zgui::functions.draw_text = render::text;
+	zgui::functions.get_text_size = render::get_text_size;
+	zgui::functions.get_frametime = render::get_frametime;
 	EngineClientVMT = new CVMTHook( pdwEngineVMT );
 	//EngineClientVMT->HookFunction( 15, Hooked_GetLastTimeStamp );
 

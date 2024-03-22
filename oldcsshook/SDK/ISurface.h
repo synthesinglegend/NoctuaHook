@@ -7,10 +7,12 @@
 ************************************************************************/
 #ifndef __ISURFACE_H__
 #define __ISURFACE_H__
-
+#include "Windows.h"
 #include "VfuncTemplates.h"
 #include "Color.h"
-
+#define VFUNCN4(funcname, offs, arg1, arg2, arg3, arg4) inline void funcname(arg1 a1, arg2 a2, arg3 a3, arg4 a4)\
+	{ ((void (__thiscall*)(CLASSNAME*, arg1, arg2, arg3, arg4))*(void**)((*(int*)this)+offs))(this, a1, a2, a3, a4); }
+#define Index2Offset( index ) ( DWORD )( ( int )( index * 0x4 ) )
 namespace Valve
 {
 	namespace vgui

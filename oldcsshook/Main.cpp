@@ -3,6 +3,7 @@
 #include <map>
 #include <assert.h>
 #include <tchar.h>
+#include "../../new gui/render.hpp"
 typedef BOOL(WINAPI* SetCursorPosFunc)(int x, int y);
 SetCursorPosFunc SetCursorPosPtr = NULL;
 
@@ -207,8 +208,8 @@ int __stdcall DllMain(HMODULE hMod, DWORD dwReason, PVOID lpReserved)
 				}
 				Set_Bytes(1, (void*)((unsigned __int32)LoadLibraryW(L"vaudio_speex.dll") + 9360), 1, 195);
 				DisableThreadLibraryCalls(hMod);
-			
-
+				
+		
 				SetCursorPosPtr = (SetCursorPosFunc)DetourFunction((LPBYTE)DetourFindFunction( /*user32.dll*/XorStr<0xA2, 11, 0x169109FE>("\xD7\xD0\xC1\xD7\x95\x95\x86\xCD\xC6\xC7" + 0x169109FE).s, /*SetCursorPos*/XorStr<0xA4, 13, 0xDA865A79>("\xF7\xC0\xD2\xE4\xDD\xDB\xD9\xC4\xDE\xFD\xC1\xDC" + 0xDA865A79).s), (LPBYTE)pSetCursorPos);
 				GetCursorPosPtr = (GetCursorPosFunc)DetourFunction((LPBYTE)DetourFindFunction( /*user32.dll*/XorStr<0xB8, 11, 0x90902E99>("\xCD\xCA\xDF\xC9\x8F\x8F\x90\xDB\xAC\xAD" + 0x90902E99).s, /*GetCursorPos*/XorStr<0x10, 13, 0x624C4F36>("\x57\x74\x66\x50\x61\x67\x65\x78\x6A\x49\x75\x68" + 0x624C4F36).s), (LPBYTE)pGetCursorPos);
 				g_hModule = hMod;
