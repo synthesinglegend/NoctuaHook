@@ -44,7 +44,7 @@ public:
 	class Aimbot
 	{
 	public:
-		bool Active, AutoShoot, AutoPistol, AutoWall, OnlyOnGround, mindmgonkey, baiminair, baimincrouch, baimafterhp, FriendlyFire, Silent, PerfectSilent, AntiSMAC, BodyAWP, SnapLimiter, BodyAim;
+		bool Active, AutoShoot, AutoPistol, AutoWall, OnlyOnGround, mindmgonkey, baiminair, baimincrouch, baimafterhp, FriendlyFire, Silent, PerfectSilent, AntiSMAC, BodyAWP, SnapLimiter, BodyAim, hitscanactive;
 		int TargetSelection, backtrackticks, Hitbox, HitboxOwns, HitboxMode, mindmgpressedvalue, mindmgpressed, baimafterhpslider,Height, HitScan, MultiSpot, AngleLimit, MinDamage, Key, AutoHeightMode[ 64 ], BodyAimValue;
 		float AngleLimitTens, PointScale, forwardtrack;
 
@@ -85,7 +85,7 @@ public:
 		class ESP
 		{
 		public:
-			bool Name, steamid, Fov, Fillbox, Spread, Armor, AngleInfo, Money, Fakelag, Health, Hitbox, Weapon, Bone, LocalPlayerEsp, AimSpot, Hit, Ground, EnemyOnly, Active, Fullbright, trails;
+			bool Name, steamid, Fov, Fillbox, Spread, Armor, AngleInfo, Money, Fakelag, Health, Hitbox, Weapon, Bone, LocalPlayerEsp, AimSpot, Hit, Ground, EnemyOnly = true, Active, Fullbright, trails;
 			int Box, KillSound, HitSound;
 		};
 
@@ -117,7 +117,7 @@ public:
 		};
 		float skyr, skyb, skyg;
 		float WallsR, WallsG, WallsB;
-		float ASUS, NightMode, FovValue;
+		float ASUS, NightMode = 1, FovValue;
 		bool Radar, ColorWalls, ColorSky, NoSky, NoHands, NoSmoke, NoFlash, NoVisualRecoil, BulletTracer, Impact, ColorFog;
 		int Start, ViewModelFOV, End;
 
@@ -142,7 +142,7 @@ public:
 		class AntiAim
 		{
 		public:
-			bool Active, manuals,  lowdelta, opposite, lbybreaker, Static, WallDetection, DuckInAir, TurnOff;
+			bool Active, manuals,  lowdelta, opposite, lbybreaker, Static, WallDetection, DuckInAir, TurnOff, AtTargetsAct;
 			int Pitch, LeftManualValue, RightManualValue, inverterkey, legityawinuse, Yaw, Variation, DuckPitch, DuckYaw, DuckVariation, WallDetectionMode, AtTargets;
 			float RealValue, JitterReal, JitterFake, way, FakeValue;
 			float RealJit, RealJit2, FakeJit, FakeJit2, PitchValue;

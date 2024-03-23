@@ -5,7 +5,7 @@ unsigned long render::main_font;
 void render::setup_fonts() {
 	main_font = g_pSurface->FontCreate();
 
-	g_pSurface->SetFontGlyphSet(main_font, "Tahoma", 12, 500, 0, 0, font_flags::fontflag_outline);
+	g_pSurface->SetFontGlyphSet(main_font, "Tahoma", 12, 500, 0, 0, font_flags::fontflag_antialias);
 }
 
 void render::line(int x, int y, int x2, int y2, color c) noexcept {
