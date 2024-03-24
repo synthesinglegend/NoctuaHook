@@ -97,6 +97,7 @@ public:
 	float SelectAngle(BasePlayer*, int);
 	bool ShouldLogShots[64];
 	void Think(BasePlayer*);
+	void memesolve(BasePlayer*);
 
 };
 std::array< ResolverData_t, 65 > m_arrResolverData;

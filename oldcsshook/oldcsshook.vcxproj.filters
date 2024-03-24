@@ -57,6 +57,9 @@
     <Filter Include="Hack\new gui">
       <UniqueIdentifier>{f5fcb353-0c3f-409e-9483-1a2d4b84fa8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="new cfg">
+      <UniqueIdentifier>{2073d3fd-ac25-44de-9f6d-f77bb4047ae9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SdkIncludes.h">
@@ -212,6 +215,15 @@
     <ClInclude Include="menu.h">
       <Filter>Hack\new gui</Filter>
     </ClInclude>
+    <ClInclude Include="new cfg\json.hpp">
+      <Filter>new cfg</Filter>
+    </ClInclude>
+    <ClInclude Include="new cfg\json-forwards.hpp">
+      <Filter>new cfg</Filter>
+    </ClInclude>
+    <ClInclude Include="configs.hpp">
+      <Filter>Hack\Stuff\hStuff</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ade32.cpp">
@@ -333,6 +345,12 @@
     </ClCompile>
     <ClCompile Include="new gui\render.cpp">
       <Filter>Hack\new gui</Filter>
+    </ClCompile>
+    <ClCompile Include="new cfg\jsoncpp.cpp">
+      <Filter>new cfg</Filter>
+    </ClCompile>
+    <ClCompile Include="configs.cpp">
+      <Filter>new cfg</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

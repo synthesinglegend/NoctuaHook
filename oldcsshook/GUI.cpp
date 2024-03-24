@@ -1017,7 +1017,7 @@ void GUI::Menu(int x, int y, int w, int h)
 			Section(true, LEFT, 8, "Aimbot");
 			CheckBox(LEFT, g_CVars.Aimbot.Active, protect("Active"));
 			CheckBox(LEFT, g_CVars.Aimbot.AutoShoot, protect("Auto Fire"));
-			CheckBox(LEFT, g_CVars.Aimbot.Resolver.Active, "Fake Correction");
+			//CheckBox(LEFT, g_CVars.Aimbot.Resolver.defaultAct, "Fake Correction");
 			CheckBox(LEFT, g_CVars.Miscellaneous.OriginCorrection, "BackTrack Correction");
 			CheckBox(LEFT, g_CVars.Aimbot.Silent, "Silent");
 			CheckBox(LEFT, g_CVars.Aimbot.PerfectSilent, "Perfect Silent");

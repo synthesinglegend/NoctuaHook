@@ -471,6 +471,104 @@ void smart(BasePlayer* Entity)
 
 }
 
+void Resolver::memesolve(BasePlayer* Entity) {
+	int i = Entity->entindex();
+	int best_record = g_LagCompensation.bestrecord[i];
+	CTickRecord* current = &pPlayerHistory[i][best_record];
+	CTickRecord* previous = &pPlayerHistory[i][best_record + 1];
+	CTickRecord simulation = pSimulationData[i];
+
+	float poseparam2 = -90.f + current->m_PoseParameter[2] * 180.f;
+	float poseparam3 = -90.f + current->m_PoseParameter[3] * 180.f;
+	float poseparam4 = -90.f + current->m_PoseParameter[4] * 180.f;
+
+	float g_flLastBodyYaw = *(float*)((DWORD)0x243A2474);
+	float m_flGoalFeetYaw = *(float*)((DWORD)Entity + 0xF80 + 0x20);
+
+
+	for (int i = 0; i < 15; i++)
+	{
+		float weight = current->m_AnimationLayer[i].flWeight;
+		float cycle = current->m_AnimationLayer[i].flCycle;
+
+		if (weight == 0.f && cycle >= .97f) printconsole("yo");
+	}
+
+
+	float pitch = Entity->m_angEyeAngles().x;
+	bool twitch = ((current->m_EyeAngles.x - previous->m_EyeAngles.x) > 40.f);
+	bool lag = ((TIME_TO_TICKS(current->m_SimulationTime - previous->m_SimulationTime)) > 6);
+
+	if (((pitch < 45.f || pitch > -45.f) && !lag) || twitch)
+	{
+		ShouldLogShots[i] = false;
+		return;
+	}
+	else ShouldLogShots[i] = true;
+
+	float temp = g_CVars.PlayerList.ViewAngles[i].y;
+	static float temp_j[64], delta[64], angle, angletowardslocal[64];
+	Vector eyedelta = Vector(EyePosition - Entity->EyePosition());
+	QAngle aimangles;
+
+	// --- calc delta for jitter ----------------------------------------------------------
+
+	delta[i] = g_Stuff.GuwopNormalize(temp - temp_j[i]);
+	delta[i] -= 180.f;
+	if (delta[i] < 0.f) delta[i] = -delta[i];
+
+	temp_j[i] = temp;
+
+	// --- calc delta for static aa -------------------------------------------------------
+
+	VectorAngles(eyedelta, aimangles);
+	aimangles.x *= -1.f;
+
+	if (!aimangles.IsValid()) return;
+
+	angletowardslocal[i] = aimangles.y - temp;
+	angletowardslocal[i] = g_Stuff.GuwopNormalize(angletowardslocal[i]);
+	if (angletowardslocal[i] < 0.f) angletowardslocal[i] += 360.f;
+
+	// --- check for movement types -------------------------------------------------------
+
+	int k = 0;
+
+	if (Entity->m_fFlags() & FL_ONGROUND)
+	{
+		if (Entity->m_vecVelocity().Length2D() < 30)
+		{
+			//if (EdgeDetect(Entity) && Entity->m_vecVelocity().Length() < 300.f) k = 5;
+			//else
+			k = (Entity->m_fFlags() & FL_DUCKING) ? 1 : 2;
+		}
+		else k = 3;
+	}
+	else k = 4;
+
+	// ------------------------------------------------------------------------------------
+
+	angle = SelectAngle(Entity, k); // other cases
+	flResAngle[i] = angle;
+	//if (fabsf(delta[i]) < 15.f) angle = 180.f; // jitter
+
+	QAngle orig = QAngle(Entity->m_angEyeAngles().x, temp, Entity->m_angEyeAngles().z);
+	QAngle final = QAngle(Entity->m_angEyeAngles().x, temp + angle, Entity->m_angEyeAngles().z);
+
+	current->m_EyeAngles.x = final.y;
+	simulation.m_EyeAngles.y = final.y;
+	Entity->m_angEyeAngles().y = final.y;
+	//Entity->SetAbsAngles(final);
+	//Entity->SetLocalAngles(final);
+
+	//Entity->UpdateClientSideAnimation();
+
+	//Entity->m_angEyeAngles().y = temp;
+	//Entity->SetAbsAngles(orig);
+	//Entity->SetLocalAngles(orig);
+	//Entity->UpdateClientSideAnimation();
+}
+
 void Resolver::Think(BasePlayer* Entity)
 {
 	auto animstate = Entity->GetAnimstate();

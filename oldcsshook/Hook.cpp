@@ -230,7 +230,7 @@ void PlayerList_EyeAngles_Yaw( const CRecvProxyData *pData, void *pStruct, void 
 		float flPitch = *( float* )( ( DWORD )pOut - 4 );
 		bool bPitch = ( ( flPitch == 89.f ) || ( flPitch == -89.f ) );
 
-		if( !( g_CVars.Aimbot.Resolver.Active && g_CVars.Aimbot.Resolver.Mode == 0 ) )
+		if( !( g_CVars.Aimbot.Resolver.defaultAct && g_CVars.Aimbot.Resolver.Mode == 0 ) )
 		{
 			switch( g_CVars.PlayerList.Yaw[ g_CVars.PlayerList.Index ] )
 			{

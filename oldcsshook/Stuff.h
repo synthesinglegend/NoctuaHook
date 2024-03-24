@@ -44,14 +44,14 @@ public:
 	class Aimbot
 	{
 	public:
-		bool Active, AutoShoot, AutoPistol, AutoWall, OnlyOnGround, mindmgonkey, baiminair, baimincrouch, baimafterhp, FriendlyFire, Silent, PerfectSilent, AntiSMAC, BodyAWP, SnapLimiter, BodyAim, hitscanactive;
-		int TargetSelection, backtrackticks, Hitbox, HitboxOwns, HitboxMode, mindmgpressedvalue, mindmgpressed, baimafterhpslider,Height, HitScan, MultiSpot, AngleLimit, MinDamage, Key, AutoHeightMode[ 64 ], BodyAimValue;
+		bool Active = true, AutoShoot = true, AutoPistol = true, AutoWall = true, OnlyOnGround, mindmgonkey = true, baiminair = true, baimincrouch = true, baimafterhp = true, FriendlyFire, Silent = true, PerfectSilent = true, AntiSMAC, BodyAWP = true, SnapLimiter, BodyAim = true, hitscanactive = true;
+		int TargetSelection = 2, backtrackticks, Hitbox = 1, HitboxOwns, HitboxMode, mindmgpressedvalue, mindmgpressed, baimafterhpslider,Height, HitScan, MultiSpot, AngleLimit, MinDamage, Key, AutoHeightMode[ 64 ], BodyAimValue;
 		float AngleLimitTens, PointScale, forwardtrack;
 
 		class Resolver
 		{
 		public:
-			bool Active, Smart, State[ 64 ], LastState[ 64 ];
+			bool defaultAct, Smart, State[ 64 ], LastState[ 64 ], memeAct = true;
 			int Mode, Type, angle;
 		};
 		Resolver Resolver;
@@ -59,7 +59,7 @@ public:
 		class Interpolation
 		{
 		public:
-			bool LagPrediction;
+			bool LagPrediction = true;
 			bool PingReducer;
 		};
 		Interpolation Interpolation;
@@ -75,7 +75,7 @@ public:
 	class Accuracy
 	{
 	public:
-		bool ForceSeed, NoSpread, PerfectAccuracy;
+		bool ForceSeed = true, NoSpread = true, PerfectAccuracy = true;
 		int NoSpreadMode;
 	};
 
@@ -85,8 +85,8 @@ public:
 		class ESP
 		{
 		public:
-			bool Name, steamid, Fov, Fillbox, Spread, Armor, AngleInfo, Money, Fakelag, Health, Hitbox, Weapon, Bone, LocalPlayerEsp, AimSpot, Hit, Ground, EnemyOnly = true, Active, Fullbright, trails;
-			int Box, KillSound, HitSound;
+			bool Name = true, steamid, Fov, Fillbox = true, Spread, Armor, AngleInfo, Money, Fakelag, Health = true, Hitbox = true, Weapon = true, Bone, LocalPlayerEsp, AimSpot = true, Hit = true, Ground, EnemyOnly = true, Active = true, Fullbright, trails;
+			int Box = true, KillSound, HitSound = 3;
 		};
 
 		class Chams
@@ -155,7 +155,7 @@ public:
 			int Mode, Value;
 		};
 
-		bool BunnyHop, AutoStrafe, FastThrow, AutoPeek, LagExploit, slowwalk, CircleStrafe, EdgeJump, Speedhack, OriginCorrection, AutoKnife, RoundSay, KillSay, CheatsBypass, AirStuck, AirStuckPress,FakeStand, ThirdPerson, FakeDuck, Save, Load, LagExploitPressed, FakeDuckPressed, Open;
+		bool BunnyHop = true, AutoStrafe = true, FastThrow, AutoPeek, LagExploit, slowwalk, CircleStrafe, EdgeJump, Speedhack, OriginCorrection, AutoKnife, RoundSay, KillSay, CheatsBypass, AirStuck, AirStuckPress,FakeStand, ThirdPerson, FakeDuck, Save, Load, LagExploitPressed, FakeDuckPressed, Open;
 		int SpeedhackValue, AutoPeekValue, slowwalkspeed, slowwalkvalue, LagExploitValue, DefensiveValue, DefensiveValue1, FakeWalkValue, FakeStandValue, FakeDuckValue, AirStuckValue, CircleStrafeValue;
 		int RotationValue, TickValue;
 

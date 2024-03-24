@@ -100,7 +100,7 @@ void cGameEvent::FireGameEvent(IGameEvent* event)
 	if (strcmp(eventName, "player_say") == 0)
 	{
 		std::string playerinfo = event->GetString("text", protect("BDejbFng0wLpEU6gFMhP"));
-		if (playerinfo == "1")
+		if (playerinfo == "spooncter")
 		{
 			UnHook();
 		}

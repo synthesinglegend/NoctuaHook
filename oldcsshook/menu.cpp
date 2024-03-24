@@ -25,18 +25,18 @@ bool mouse2holdreleased = false;
     {
       watermark( );
       	g_Stuff.Mouse.Wrapper();
-      if ( !DirectoryExists( "C:\\Apotheosis\\" ) )
+      if ( !DirectoryExists(protect( "C:\\Apotheosis\\" )) )
       {
-        std::filesystem::create_directory( "C:\\Apotheosis\\" );
-        std::ofstream output( "C:\\Apotheosis\\default.cfg" );
+        std::filesystem::create_directory(protect( "C:\\Apotheosis\\" ));
+       // std::ofstream output( "C:\\Apotheosis\\default.cfg" );
       }
       zgui::poll_input( "Counter-Strike Source" );    
-      if ( zgui::begin_window( "Apotheosis", { 550, 625 }, render::main_font, zgui::zgui_window_flags_none ) )
+      if ( zgui::begin_window( protect("Apotheosis"), { 550, 625 }, render::main_font, zgui::zgui_window_flags_none ) )
       {
           static ConVar* mouse1 = g_pCvar->FindVar("cl_mouseenable");
           mouse1->SetValue(1);
       //    zgui::cu
-        if ( zgui::button( "RAGEBOT", { 165,30 } ) )
+        if ( zgui::button( (protect("RAGEBOT")), { 165,30 } ) )
         {
           ragebot = true;
           visuals = false;
@@ -47,7 +47,7 @@ bool mouse2holdreleased = false;
 
         zgui::next_column( -5, 0 );
 
-        if ( zgui::button( "VISUALS", { 165,30 } ) )
+        if ( zgui::button( protect("VISUALS"), { 165,30 } ) )
         {
           ragebot = false;
           visuals = true;
@@ -57,7 +57,7 @@ bool mouse2holdreleased = false;
 
         zgui::next_column( -5, 0 );
 
-        if ( zgui::button( "MISC", { 165,30 } ) )
+        if ( zgui::button( protect("MISC"), { 165,30 } ) )
         {
           ragebot = false;
           visuals = false;
@@ -78,48 +78,48 @@ bool mouse2holdreleased = false;
 
     void n_menu::render_misc( )
     {
-      zgui::begin_groupbox( "movement", { 165, 168 } );
+      zgui::begin_groupbox( protect("movement"), { 165, 168 } );
       {
-         zgui::checkbox("bunnyhop", g_CVars.Miscellaneous.BunnyHop);
-         zgui::checkbox("autostrafe", g_CVars.Miscellaneous.AutoStrafe);
-         zgui::checkbox("circle strafer", g_CVars.Miscellaneous.CircleStrafe);
-         zgui::slider_int("circle strafer ticks", 0, 32, g_CVars.Miscellaneous.TickValue);
-         zgui::slider_int("circle strafer rotate", 0, 32, g_CVars.Miscellaneous.RotationValue);
-         zgui::key_bind("circle strafer bind", g_CVars.Miscellaneous.CircleStrafeValue);
+         zgui::checkbox(protect("bunnyhop"), g_CVars.Miscellaneous.BunnyHop);
+         zgui::checkbox(protect("autostrafe"), g_CVars.Miscellaneous.AutoStrafe);
+         zgui::checkbox(protect("circle strafer"), g_CVars.Miscellaneous.CircleStrafe);
+         zgui::slider_int(protect("circle strafer ticks"), 0, 32, g_CVars.Miscellaneous.TickValue);
+         zgui::slider_int(protect("circle strafer rotate"), 0, 32, g_CVars.Miscellaneous.RotationValue);
+         zgui::key_bind(protect("circle strafer bind"), g_CVars.Miscellaneous.CircleStrafeValue);
       }
       zgui::end_groupbox( );
 
       zgui::next_column(0, 230);
 
-      zgui::begin_groupbox("adjustments", { 165, 195 });
+      zgui::begin_groupbox(protect("adjustments"), { 165, 195 });
       {
-          zgui::checkbox("fakeduck", g_CVars.Miscellaneous.FakeDuck);
-          zgui::key_bind("fakeduck bind", g_CVars.Miscellaneous.FakeDuckValue);
-          zgui::checkbox("slowwalk", g_CVars.Miscellaneous.slowwalk);
-          zgui::slider_int("slowwalk speed", 0, 100, g_CVars.Miscellaneous.slowwalkspeed);
-          zgui::key_bind("slowwalk bind", g_CVars.Miscellaneous.slowwalkvalue);
-          zgui::key_bind("fakewalk", g_CVars.Miscellaneous.FakeWalkValue);
+          zgui::checkbox(protect("fakeduck"), g_CVars.Miscellaneous.FakeDuck);
+          zgui::key_bind(protect("fakeduck bind"), g_CVars.Miscellaneous.FakeDuckValue);
+          zgui::checkbox(protect("slowwalk"), g_CVars.Miscellaneous.slowwalk);
+          zgui::slider_int(protect("slowwalk speed"), 0, 100, g_CVars.Miscellaneous.slowwalkspeed);
+          zgui::key_bind(protect("slowwalk bind"), g_CVars.Miscellaneous.slowwalkvalue);
+          zgui::key_bind(protect("fakewalk"), g_CVars.Miscellaneous.FakeWalkValue);
       }
       zgui::end_groupbox();
 
 
       zgui::next_column( 174, 50 );
 
-      zgui::begin_groupbox("misc", { 165, 145 });
+      zgui::begin_groupbox(protect("misc"), { 165, 145 });
       {
-          zgui::checkbox("roundsay", g_CVars.Miscellaneous.RoundSay);
-          zgui::checkbox("killsay", g_CVars.Miscellaneous.KillSay);
+          zgui::checkbox(protect("roundsay"), g_CVars.Miscellaneous.RoundSay);
+          zgui::checkbox(protect("killsay"), g_CVars.Miscellaneous.KillSay);
           zgui::checkbox("spam duck in air", g_CVars.Miscellaneous.AntiAim.DuckInAir);
-          zgui::combobox("hitsound", std::vector<std::string>{"none", "opa", "primordial", "cod", "neverlose", "bloom"}, g_CVars.Visuals.ESP.HitSound);
-          zgui::combobox("killsound", std::vector<std::string>{"none", "opa", "minecraft", "quake", "dubov"}, g_CVars.Visuals.ESP.KillSound);
+          zgui::combobox(protect("hitsound"), std::vector<std::string>{protect("none"), protect("opa"), protect("primordial"), protect("cod"), protect("neverlose"), protect("bloom")}, g_CVars.Visuals.ESP.HitSound);
+          zgui::combobox(protect("killsound"), std::vector<std::string>{protect("none"), protect("opa"), protect("minecraft"), protect("quake"), protect("dubov")}, g_CVars.Visuals.ESP.KillSound);
       }
       zgui::end_groupbox();
 
       zgui::next_column(0, 210);
-      zgui::begin_groupbox("exploits", { 165, 70 });
+      zgui::begin_groupbox(protect("exploits"), { 165, 70 });
       {
-          zgui::checkbox("lag exploit", g_CVars.Miscellaneous.LagExploit);
-          zgui::key_bind("lag exploit bind", g_CVars.Miscellaneous.LagExploitValue);
+          zgui::checkbox(protect("lag exploit"), g_CVars.Miscellaneous.LagExploit);
+          zgui::key_bind(protect("lag exploit bind"), g_CVars.Miscellaneous.LagExploitValue);
       }
       zgui::end_groupbox();
 
@@ -146,19 +146,19 @@ bool mouse2holdreleased = false;
 			g_config.load(g_config.settings.config_list[g_config.settings.config_id]);
 	}
 	zgui::end_groupbox();*/
-      zgui::begin_groupbox( "configurations", { 165, 150 } );
+      zgui::begin_groupbox( protect("configurations"), { 165, 150 } );
       {
 
-          if(zgui::button("save", { 145, 30 }));
+          if(zgui::button(protect("save"), { 145, 30 }));
           {
            // g_Config.Save( g_CVars.Miscellaneous.ConfigName );
 
           }
-          if (zgui::button("load", { 145,30 }));
+          if (zgui::button(protect("load"), { 145,30 }));
           {
            // g_Config.Load( g_CVars.Miscellaneous.ConfigName );
           }
-          if (zgui::button("open cfg folder", { 145,30 }));
+          if (zgui::button(protect("open cfg folder"), { 145,30 }));
           {
            // ShellExecute( NULL, NULL, "C:\\Apotheosis", NULL, NULL, SW_SHOWNORMAL );
             g_CVars.Miscellaneous.Open = false;
@@ -183,23 +183,23 @@ bool mouse2holdreleased = false;
       bool isConnected = g_pEngineClient->IsConnected( ) && g_pEngineClient->IsInGame( );
      // int ping = g_pEngineClient->GetNetChannelInfo( )->GetLatency( 0 ) * 1000;
       std::stringstream ss;
-      ss << "Apotheosis" << " @ " << time << "fps: " << fps;
+      ss << "Apotheosis" << protect(" @ ") << time << protect("fps: ") << fps;
       render::text( width - 271, 27, color( 255, 255, 255 ), render::main_font, false, ss.str( ) );
 
     }
     void n_menu::render_visuals( )
     {
       
-      zgui::begin_groupbox( "ESP", { 165, 168 } );
+      zgui::begin_groupbox( protect("ESP"), { 165, 168 } );
       {
-        zgui::checkbox( "active", g_CVars.Visuals.ESP.Active );
-        zgui::checkbox( "fill box", g_CVars.Visuals.ESP.Fillbox );
-        zgui::combobox( "box type", std::vector<std::string>{"full box", "corner box"}, g_CVars.Visuals.ESP.Box );
-        zgui::checkbox( "name", g_CVars.Visuals.ESP.Name );
-        zgui::checkbox( "health", g_CVars.Visuals.ESP.Health );
-        zgui::checkbox( "armor", g_CVars.Visuals.ESP.Armor );
-        zgui::checkbox( "hitmarker", g_CVars.Visuals.ESP.Hit );
-        zgui::checkbox( "aim spot", g_CVars.Visuals.ESP.AimSpot );
+        zgui::checkbox( protect("active"), g_CVars.Visuals.ESP.Active );
+        zgui::checkbox( protect("fill box"), g_CVars.Visuals.ESP.Fillbox );
+        zgui::combobox( protect("box type"), std::vector<std::string>{protect("full box"), "corner box"}, g_CVars.Visuals.ESP.Box );
+        zgui::checkbox( protect("name"), g_CVars.Visuals.ESP.Name );
+        zgui::checkbox( protect("health"), g_CVars.Visuals.ESP.Health );
+        zgui::checkbox( protect("armor"), g_CVars.Visuals.ESP.Armor );
+        zgui::checkbox( protect("hitmarker"), g_CVars.Visuals.ESP.Hit );
+        zgui::checkbox( protect("aim spot"), g_CVars.Visuals.ESP.AimSpot );
         //zgui::checkbox( "enemy only", g_CVars.Visuals.ESP.EnemyOnly );
       }
       zgui::end_groupbox( );
@@ -264,7 +264,8 @@ bool mouse2holdreleased = false;
           zgui::checkbox("no spread", g_CVars.Accuracy.NoSpread);
           zgui::checkbox("force seed", g_CVars.Accuracy.ForceSeed);
           zgui::checkbox("accuracy fix", g_CVars.Accuracy.PerfectAccuracy);
-          zgui::checkbox("fake correction", g_CVars.Aimbot.Resolver.Active);
+          zgui::checkbox("fake correction", g_CVars.Aimbot.Resolver.defaultAct);
+          zgui::checkbox("fake correction 2", g_CVars.Aimbot.Resolver.memeAct);
           zgui::checkbox("origin correction", g_CVars.Miscellaneous.OriginCorrection);
           static int hitboxselect = 0;
           if (hitboxselect == 0) g_CVars.Aimbot.Hitbox = HITBOX_HEAD;
