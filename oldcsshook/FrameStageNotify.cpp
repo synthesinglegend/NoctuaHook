@@ -183,10 +183,10 @@ void __fastcall Hooked_FrameStageNotify(void* ecx, void* edx, ClientFrameStage_t
 			}
 			if (Entity->IsDormant()) continue;
 
-			if (!g_Whitelist.List(Index) && (!g_CVars.Aimbot.Resolver.memeAct) && g_CVars.Aimbot.Resolver.defaultAct) g_Resolver.Think(Entity);
-			if (g_CVars.Aimbot.Resolver.memeAct) {
-				g_CVars.Aimbot.Resolver.defaultAct == 0;
-				g_Resolver.memesolve(Entity);
+			if (!g_Whitelist.List(Index))
+			{
+				if(g_CVars.Aimbot.Resolver.Mode == 1) g_Resolver.Think(Entity);
+				if (g_CVars.Aimbot.Resolver.Mode == 2) g_Resolver.memesolve(Entity);
 			}
 			if (pPlayerHistory[Index][0].m_SimulationTime != Entity->m_flSimulationTime())
 			{

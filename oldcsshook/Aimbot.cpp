@@ -608,7 +608,7 @@ void Aimbot::Main(CUserCmd* pCmd, BasePlayer* LocalPlayer)
 		{
 			iSpot = fullhitboxes[17];
 		}
-		else iSpot = g_CVars.Aimbot.Hitbox;
+		else iSpot = 12;
 
 		GetAsyncKeyState(g_CVars.Aimbot.mindmgpressedvalue) ? g_CVars.Aimbot.mindmgpressed : g_CVars.Aimbot.MinDamage;
 
@@ -616,25 +616,25 @@ void Aimbot::Main(CUserCmd* pCmd, BasePlayer* LocalPlayer)
 		{
 			if (Ent->m_fFlags() & FL_DUCKING)
 			{
-				iSpot = HITBOX_CHEST;
+				iSpot = 9;
 			}
-			else iSpot = g_CVars.Aimbot.Hitbox;
+			else iSpot = 12;
 
 		}
-		else iSpot = g_CVars.Aimbot.Hitbox;
+		else iSpot = 12;
 
 		if (g_CVars.Aimbot.baimafterhp)
 		{
-			if (Ent->m_iHealth() <= g_CVars.Aimbot.baimafterhpslider) iSpot = HITBOX_CHEST;
-			else iSpot = g_CVars.Aimbot.Hitbox;
+			if (Ent->m_iHealth() <= g_CVars.Aimbot.baimafterhpslider) iSpot = 9;
+			else iSpot = 12;
 		}
-		else iSpot = g_CVars.Aimbot.Hitbox;
+		else iSpot = 12;
 
 		if ( g_CVars.Aimbot.BodyAim && GetAsyncKeyState( g_CVars.Aimbot.BodyAimValue ) )
 		{
-			g_CVars.Aimbot.Hitbox = 9;
+			iSpot = 9;
 		}
-		else iSpot = g_CVars.Aimbot.Hitbox;
+		else iSpot = 12;
 		/*
 		if (true)
 		{
@@ -876,11 +876,11 @@ void Aimbot::Main(CUserCmd* pCmd, BasePlayer* LocalPlayer)
 
 		if (g_CVars.Aimbot.BodyAim && GetAsyncKeyState(g_CVars.Aimbot.BodyAimValue))
 		{
-			iSpot = HITBOX_CHEST;
+			iSpot = 9;
 		}
 		else
 		{
-			iSpot = g_CVars.Aimbot.Hitbox;
+			iSpot = 12;
 		}
 
 	}

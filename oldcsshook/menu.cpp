@@ -244,7 +244,7 @@ bool mouse2holdreleased = false;
  
     void n_menu::render_ragebot( )
     {
-      zgui::begin_groupbox( "aimbot", { 165, 150 } );
+      zgui::begin_groupbox( "aimbot", { 165, 215 } );
       {
           zgui::checkbox("active#1", g_CVars.Aimbot.Active);
           zgui::checkbox("auto fire", g_CVars.Aimbot.AutoShoot);
@@ -252,37 +252,31 @@ bool mouse2holdreleased = false;
           zgui::checkbox("psilent", g_CVars.Aimbot.PerfectSilent);
 
           zgui::slider_int("min damage", 0, 100, g_CVars.Aimbot.MinDamage);
+          zgui::key_bind("override min damage#1", g_CVars.Aimbot.mindmgpressedvalue);
           zgui::slider_float("hitbox scale", 0.0f, 1.0f, g_CVars.Aimbot.PointScale);
+
+          zgui::slider_int("override min damage#2", 0, 100, g_CVars.Aimbot.mindmgpressed);
 
       }
       zgui::end_groupbox( );
 
-      zgui::next_column(0, 210);
+      zgui::next_column(0, 275);
 
-      zgui::begin_groupbox( "accuracy", { 165, 285 } );
+      zgui::begin_groupbox( "accuracy", { 165, 155 } );
       {
           zgui::checkbox("no spread", g_CVars.Accuracy.NoSpread);
           zgui::checkbox("force seed", g_CVars.Accuracy.ForceSeed);
           zgui::checkbox("accuracy fix", g_CVars.Accuracy.PerfectAccuracy);
-          zgui::checkbox("fake correction", g_CVars.Aimbot.Resolver.defaultAct);
-          zgui::checkbox("fake correction 2", g_CVars.Aimbot.Resolver.memeAct);
+          zgui::combobox("correction mode", std::vector<std::string>{"off", "bruteforce", "meme$"}, g_CVars.Aimbot.Resolver.Mode);
           zgui::checkbox("origin correction", g_CVars.Miscellaneous.OriginCorrection);
-          static int hitboxselect = 0;
-          if (hitboxselect == 0) g_CVars.Aimbot.Hitbox = HITBOX_HEAD;
-          else if (hitboxselect == 1) g_CVars.Aimbot.Hitbox = HITBOX_NECK;
-          else if (hitboxselect == 2) g_CVars.Aimbot.Hitbox = HITBOX_CHEST;
-          else if (hitboxselect == 3) g_CVars.Aimbot.Hitbox = HITBOX_STOMACH;
-          
-         
-          zgui::combobox("hitbox", std::vector < std::string> { "Head", "Neck", "Chest", "Stomach" }, hitboxselect);
-          zgui::combobox("height", std::vector<std::string>{"auto", "origin", "center", "center fixed", "highest"}, g_CVars.Aimbot.HitboxMode);
+
           zgui::combobox( "target sorting", std::vector<std::string>{"by distance", "by health", "next shot", "randomly"}, g_CVars.Aimbot.TargetSelection );
       }
       zgui::end_groupbox();
 
       zgui::next_column(174, 50);
 
-      zgui::begin_groupbox("lag", { 165, 260 });
+      zgui::begin_groupbox("lag", { 165, 155 });
       {
           zgui::checkbox("active#2", g_CVars.Miscellaneous.Fakelag.Active);
           
@@ -295,7 +289,7 @@ bool mouse2holdreleased = false;
       }
       zgui::end_groupbox();
 
-      zgui::next_column(0, 335);
+      zgui::next_column(0, 230);
 
       zgui::begin_groupbox("hitbox enhancements", { 165, 245 });
       {
