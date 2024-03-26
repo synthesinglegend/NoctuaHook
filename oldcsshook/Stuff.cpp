@@ -503,7 +503,18 @@ void Stuff::ForceCVars()
 	static ConVar* sv_cheats = g_pCvar->FindVar( /*sv_cheats*/XorStr<0x57, 10, 0xA5D43405>("\x24\x2E\x06\x39\x33\x39\x3C\x2A\x2C" + 0xA5D43405).s);
 	static ConVar* r_lightaverage = g_pCvar->FindVar( /*r_lightaverage*/XorStr<0xF3, 15, 0xA900D21B>("\x81\xAB\x99\x9F\x90\x90\x8D\x9B\x8D\x99\x8F\x9F\x98\x65" + 0xA900D21B).s);
 	static ConVar* cl_pred_optimize = g_pCvar->FindVar( /*cl_pred_optimize*/XorStr<0x60, 17, 0x4D7607F4>("\x03\x0D\x3D\x13\x16\x00\x02\x38\x07\x19\x1E\x02\x01\x04\x14\x0A" + 0x4D7607F4).s);
+	if (g_CVars.Visuals.ESP.AspectRatio) g_pCvar->FindVar("r_aspectratio")->SetValue(g_CVars.Visuals.ESP.AspectRatioValue);
+	else g_pCvar->FindVar("r_aspectratio")->SetValue(0);
+	if (g_CVars.Visuals.ESP.WireFrameHit)
+	{
+		g_pCvar->FindVar("r_modelwireframedecal")->SetValue(1);
+		g_pCvar->FindVar("showhitlocation")->SetValue(1);
+	}
 
+	if (g_CVars.Visuals.ESP.lagcompsv)
+	{
+		g_pCvar->FindVar("sv_showlagcompensation")->SetValue(1);
+	}
 	static ConVar* cvar_fps_max = g_pCvar->FindVar( /*fps_max*/XorStr<0x41, 8, 0x6C9C7188>("\x27\x32\x30\x1B\x28\x27\x3F" + 0x6C9C7188).s);
 	static ConVar* cvar_cl_interp = g_pCvar->FindVar( /*cl_interp*/XorStr<0x72, 10, 0x8F44826E>("\x11\x1F\x2B\x1C\x18\x03\x1D\x0B\x0A" + 0x8F44826E).s);
 	static ConVar* cvar_cl_cmdrate = g_pCvar->FindVar( /*cl_cmdrate*/XorStr<0x76, 11, 0xD36C7CF1>("\x15\x1B\x27\x1A\x17\x1F\x0E\x1C\x0A\x1A" + 0xD36C7CF1).s);

@@ -219,13 +219,17 @@ bool mouse2holdreleased = false;
 
       zgui::next_column(174, 50);
 
-      zgui::begin_groupbox("world", { 165, 180 });
+      zgui::begin_groupbox("world", { 165, 220 });
       {
           zgui::combobox( "crosshair", std::vector<std::string>{"off", "cross", "dot", "round", "swastika"}, g_CVars.Visuals.Crosshair.Type );
           zgui::checkbox("fullbright", g_CVars.Visuals.ESP.Fullbright);
           zgui::checkbox("splash effect", g_CVars.Visuals.ESP.trails);
+          zgui::checkbox("aspect ratio#1", g_CVars.Visuals.ESP.AspectRatio);
+          zgui::checkbox("show lagcompensation", g_CVars.Visuals.ESP.lagcompsv);
+          zgui::checkbox("wireframe hit", g_CVars.Visuals.ESP.WireFrameHit);
           zgui::slider_int("viewmodel fov", 0, 90, g_CVars.Visuals.ViewModelFOV);
           zgui::slider_float("wall transparent", 0.0f, 1.0f, g_CVars.Visuals.ASUS);
+          zgui::slider_float("aspect ratio#2", 0.0f, 10.0f, g_CVars.Visuals.ESP.AspectRatioValue);
           zgui::slider_float("nightmode", 0.0f, 1.0f, g_CVars.Visuals.NightMode);
       }
 
@@ -252,9 +256,9 @@ bool mouse2holdreleased = false;
           zgui::checkbox("psilent", g_CVars.Aimbot.PerfectSilent);
 
           zgui::slider_int("min damage", 0, 100, g_CVars.Aimbot.MinDamage);
-          zgui::key_bind("override min damage#1", g_CVars.Aimbot.mindmgpressedvalue);
           zgui::slider_float("hitbox scale", 0.0f, 1.0f, g_CVars.Aimbot.PointScale);
 
+          zgui::key_bind("override min damage#1", g_CVars.Aimbot.mindmgpressedvalue);
           zgui::slider_int("override min damage#2", 0, 100, g_CVars.Aimbot.mindmgpressed);
 
       }
@@ -262,15 +266,25 @@ bool mouse2holdreleased = false;
 
       zgui::next_column(0, 275);
 
-      zgui::begin_groupbox( "accuracy", { 165, 155 } );
+      zgui::begin_groupbox( "accuracy", { 165, 175 } );
       {
           zgui::checkbox("no spread", g_CVars.Accuracy.NoSpread);
           zgui::checkbox("force seed", g_CVars.Accuracy.ForceSeed);
           zgui::checkbox("accuracy fix", g_CVars.Accuracy.PerfectAccuracy);
           zgui::combobox("correction mode", std::vector<std::string>{"off", "bruteforce", "meme$"}, g_CVars.Aimbot.Resolver.Mode);
           zgui::checkbox("origin correction", g_CVars.Miscellaneous.OriginCorrection);
+          //разьебать дом школьнику миной 122мм(можно и 155мм)
+        
 
           zgui::combobox( "target sorting", std::vector<std::string>{"by distance", "by health", "next shot", "randomly"}, g_CVars.Aimbot.TargetSelection );
+          std::array< std::string, 4 > aimbothitbox = { "head", "neck", "chest", "stomach" };
+          static int hitboxselect = 0;
+         // PseudoCombo(RIGHT, hitboxselect, 0, 3, "hitbox", aimbothitbox.at(hitboxselect).c_str());
+          zgui::combobox("hitbox", std::vector<std::string>{"head", "neck", "chest", "stomach"}, hitboxselect);
+          if (hitboxselect == 0) g_CVars.Aimbot.Hitbox = 12;
+          else if (hitboxselect == 1) g_CVars.Aimbot.Hitbox = 11;
+          else if (hitboxselect == 2) g_CVars.Aimbot.Hitbox = 10;
+          else if (hitboxselect == 3) g_CVars.Aimbot.Hitbox = 9;
       }
       zgui::end_groupbox();
 
@@ -291,14 +305,11 @@ bool mouse2holdreleased = false;
 
       zgui::next_column(0, 230);
 
-      zgui::begin_groupbox("hitbox enhancements", { 165, 245 });
+      zgui::begin_groupbox("hitbox enhancements", { 165, 150 });
       {
           zgui::checkbox("hitscan", g_CVars.Aimbot.hitscanactive );
           zgui::combobox("hitscan#1", std::vector<std::string>{"low", "medium", "high"}, g_CVars.Aimbot.HitScan);
           zgui::checkbox("body aim", g_CVars.Aimbot.BodyAim);
-          zgui::key_bind("body aim bind", g_CVars.Aimbot.BodyAimValue);
-          zgui::checkbox("body aim in air", g_CVars.Aimbot.baiminair);
-          zgui::checkbox("body aim in crouch", g_CVars.Aimbot.baimincrouch);
           zgui::checkbox("body after hp", g_CVars.Aimbot.baimafterhp);
           zgui::slider_int("after hp", 0, 100, g_CVars.Aimbot.baimafterhpslider);
       }

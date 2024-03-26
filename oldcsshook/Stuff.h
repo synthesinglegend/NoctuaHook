@@ -85,8 +85,9 @@ public:
 		class ESP
 		{
 		public:
-			bool Name = true, steamid, Fov, Fillbox = true, Spread, Armor, AngleInfo, Money, Fakelag, Health = true, Hitbox = true, Weapon = true, Bone, LocalPlayerEsp, AimSpot = true, Hit = true, Ground, EnemyOnly = true, Active = true, Fullbright, trails;
+			bool Name = true, steamid, lagcompsv, AspectRatio, WireFrameHit, Fov, Fillbox = true, Spread, Armor, AngleInfo, Money, Fakelag, Health = true, Hitbox = true, Weapon = true, Bone, LocalPlayerEsp, AimSpot = true, Hit = true, Ground, EnemyOnly = true, Active = true, Fullbright, trails;
 			int Box = true, KillSound, HitSound = 3;
+			float AspectRatioValue;
 		};
 
 		class Chams
