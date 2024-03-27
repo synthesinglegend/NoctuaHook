@@ -421,7 +421,7 @@ void Aimbot::Main(CUserCmd* pCmd, BasePlayer* LocalPlayer)
 		if (g_CVars.Aimbot.baimafterhp)
 		{
 
-			if (Ent->m_iHealth() < g_CVars.Aimbot.baimafterhpslider) g_CVars.Aimbot.Hitbox = 10;
+			if (Ent->m_iHealth() < g_CVars.Aimbot.baimafterhpslider) iSpot = 10;
 			else iSpot = g_CVars.Aimbot.Hitbox;
 
 		}
@@ -498,11 +498,11 @@ void Aimbot::Main(CUserCmd* pCmd, BasePlayer* LocalPlayer)
 	}
 	if (GetAsyncKeyState(g_CVars.Aimbot.BodyAimValue))
 	{
-		g_CVars.Aimbot.Hitbox = HITBOX_CHEST; //stomach
+		iSpot = HITBOX_CHEST; //stomach
 	}
 	else
 	{
-		g_CVars.Aimbot.Hitbox = HITBOX_HEAD;
+		iSpot = g_CVars.Aimbot.Hitbox;
 	}
 
 	if (g_CVars.Aimbot.TargetSelection == 3) next_shot = TargetIndex;
