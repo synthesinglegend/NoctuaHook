@@ -170,22 +170,33 @@ bool mouse2holdreleased = false;
     {
       const auto chrono_time = std::chrono::system_clock::to_time_t( std::chrono::system_clock::now( ) );
       const auto time = ctime( &chrono_time );
+      auto date = __DATE__;
       auto fps = static_cast< int >( 1.f / g_pGlobals->frametime );
       int width, height;
       g_pEngineClient->GetScreenSize( width, height );
       render::filled_rect( width - 280, 20, 260, 28, color( 1, 1, 1, 255 ) );
-     render::filled_rect( width - 279, 21, 258, 26, color( 51, 51, 51, 255 ) );
+      render::filled_rect( width - 279, 21, 258, 26, color( 51, 51, 51, 255 ) );
       render::filled_rect( width - 278, 22, 256, 24, color( 41, 41, 41, 255 ) );
-     render::filled_rect( width - 277, 23, 254, 22, color( 51, 51, 51, 255 ) );
-     render::filled_rect( width - 276, 24, 252, 20, color( 1, 1, 1, 255 ) );
+      render::filled_rect( width - 277, 23, 254, 22, color( 51, 51, 51, 255 ) );
+      render::filled_rect( width - 276, 24, 252, 20, color( 1, 1, 1, 255 ) );
       render::filled_rect( width - 275, 25, 250, 18, color( 31, 31, 31, 255 ) );
-     render::filled_rect( width - 275, 42, 250, 1, color( 104, 88, 206, 255 ) );
+      render::filled_rect( width - 275, 42, 250, 1, color( 104, 88, 206, 255 ) );
       bool isConnected = g_pEngineClient->IsConnected( ) && g_pEngineClient->IsInGame( );
-     // int ping = g_pEngineClient->GetNetChannelInfo( )->GetLatency( 0 ) * 1000;
+      int ping = 0;
+      if (isConnected )
+      ping = g_pEngineClient->GetNetChannelInfo( )->GetLatency( 0 ) * 1000;
       std::stringstream ss;
-      ss << "Apotheosis" << protect(" @ ") << time << protect("fps: ") << fps;
-      render::text( width - 271, 27, color( 255, 255, 255 ), render::main_font, false, ss.str( ) );
-
+      std::stringstream ss1;
+      if ( isConnected )
+      {
+        ss << "Apotheosis" << protect( " | " ) << protect("built at:") << date << " | " << protect("rtt:") << ping << " | " << protect( "fps: " ) << fps;
+        render::text( width - 271, 27, color( 255, 255, 255 ), render::main_font, false, ss.str( ) );
+      }
+      if ( !isConnected )
+      {
+        ss1 << protect("Apotheosis") << protect( " | " ) << protect("built at:") << date << " | " << protect("none") << " | " << protect( "fps: " ) << fps;
+        render::text( width - 271, 27, color( 255, 255, 255 ), render::main_font, false, ss1.str( ) );
+      }
     }
     void n_menu::render_visuals( )
     {
@@ -206,13 +217,13 @@ bool mouse2holdreleased = false;
 
       zgui::next_column(0, 235);
 
-      zgui::begin_groupbox("removals", { 165, 100 });
+      zgui::begin_groupbox(protect("removals"), { 165, 100 });
       {
-          zgui::checkbox("anti smoke", g_CVars.Visuals.NoSmoke);
-          zgui::checkbox("anti flash", g_CVars.Visuals.NoFlash);
-          zgui::checkbox("no hands", g_CVars.Visuals.NoHands);
-          zgui::checkbox("no visual recoil", g_CVars.Visuals.NoVisualRecoil);
-          zgui::checkbox("no sky", g_CVars.Visuals.NoSky );
+          zgui::checkbox(protect("anti-smoke"), g_CVars.Visuals.NoSmoke);
+          zgui::checkbox(protect("anti-flash"), g_CVars.Visuals.NoFlash);
+          zgui::checkbox(protect("remove hands"), g_CVars.Visuals.NoHands);
+          zgui::checkbox(protect("remove recoil"), g_CVars.Visuals.NoVisualRecoil);
+          zgui::checkbox(protect("remove skybox"), g_CVars.Visuals.NoSky );
           
       }
       zgui::end_groupbox();
