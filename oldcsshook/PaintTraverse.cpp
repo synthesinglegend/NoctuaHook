@@ -521,11 +521,19 @@ void BoundingBoxESP()
 
 				g_Drawing.FilledRect((vPlayerHeadScreen.x + HalfWidth) - WidthThird, vPlayerHeadScreen.y + Height - 3, WidthThird, 1, colour);
 				g_Drawing.FilledRect(vPlayerHeadScreen.x + HalfWidth, (vPlayerHeadScreen.y + Height) - HeightThird - 3, 1, HeightThird + 1, colour);
+				player_info_t pi2;
+				g_pEngineClient->GetPlayerInfo( Index, &pi2 );
+				render::text( box.x + HalfWidth, box.y - 13, color( 255, 255, 255, 255 ), render::main_font, true, pi2.name );
+				g_Drawing.MenuStringNormal(true, false, box.x + HalfWidth, box.y - 13, Color(255,255,255,255), xorstr(u8"%s"), pi2.name);
 			}
 			if (g_CVars.Visuals.ESP.Box == 2)
 			{
 				//Vector box = Vector((vPlayerHeadScreen.x - HalfWidth), vPlayerHeadScreen.y, 0.f);
 				g_Drawing.OutlinedBox(box.x, box.y, (HalfWidth * 2), Height, Color(g_CVars.Visuals.Chams.ESPColor.r, g_CVars.Visuals.Chams.ESPColor.g, g_CVars.Visuals.Chams.ESPColor.b, 160), Color(0, 0, 0, 128));
+				player_info_t pi;
+				g_pEngineClient->GetPlayerInfo( Index, &pi );
+				render::text( box.x + HalfWidth, box.y - 13, color( g_CVars.Visuals.Chams.ESPColor.r, g_CVars.Visuals.Chams.ESPColor.g, g_CVars.Visuals.Chams.ESPColor.b, 160 ), render::main_font, true, pi.name );
+				g_Drawing.MenuStringNormal( true, false, box.x + HalfWidth, box.y - 13, Color( 255, 255, 255, 255 ), xorstr( u8"%s" ), pi.name );
 			}
 			/*
 					else if (g_CVars.Visuals.ESP.Box == 2)
@@ -570,7 +578,6 @@ void BoundingBoxESP()
 					*/
 
 
-			
 
 			if (g_CVars.Visuals.ESP.AimSpot) g_Drawing.DrawAimSpot(Ent, g_CVars.Aimbot.Hitbox, Color(255, 255, 255, iAlpha[Index]));
 
@@ -579,8 +586,9 @@ void BoundingBoxESP()
 			if (g_CVars.Visuals.ESP.Name)
 			{
 				//if( g_Stuff.Timeout[ Ent->entindex( ) ] ) g_Drawing.MenuStringNormal( true, false, box.x + HalfWidth, box.y - 26, Color( 255, 0, 0, 200 ), /*TIMED OUT!*/XorStr<0x80,11,0xDCDD6DA1>("\xD4\xC8\xCF\xC6\xC0\xA5\xC9\xD2\xDC\xA8"+0xDCDD6DA1).s );
-				if (g_CVars.PlayerList.Friend[Index]) g_Drawing.MenuStringBold(true, false, box.x + HalfWidth, box.y - 13, Color(255, 255, 255, 255), /*Friend: %s*/XorStr<0xE1, 11, 0x9B2BE55F>("\xA7\x90\x8A\x81\x8B\x82\xDD\xC8\xCC\x99" + 0x9B2BE55F).s, PlayerInfo.name);
-				else g_Drawing.MenuStringNormal(true, false, box.x + HalfWidth, box.y - 13, Color(g_CVars.Visuals.Chams.ESPColor.r, g_CVars.Visuals.Chams.ESPColor.g, g_CVars.Visuals.Chams.ESPColor.b), xorstr(u8"%s"), PlayerInfo.name);
+			
+				//render::text( box.x + HalfWidth, box.y - 13, color( 255, 255, 255, 255 ), render::main_font, true, PlayerInfo.name );
+			//	g_Drawing.MenuStringNormal(true, false, box.x + HalfWidth, box.y - 13, Color(255,255,255,255), xorstr(u8"%s"), PlayerInfo.name);
 			}
 			if (g_CVars.Visuals.ESP.Fillbox) g_Drawing.FilledRect(box.x, box.y, (HalfWidth * 2), Height, Color(g_CVars.Visuals.Chams.ESPColor.r, g_CVars.Visuals.Chams.ESPColor.g, g_CVars.Visuals.Chams.ESPColor.b, 55));
 			CTickRecord* current = &pPlayerHistory[Index][0];
@@ -999,7 +1007,7 @@ void __fastcall Hooked_PaintTraverse( void* ptr, int edx, unsigned int vguiPanel
 
 				if (g_pEngineClient->IsInGame())
 				{ 
-					m_pEngineEffects->Ricochet( player->GetAbsOrigin( ), Vector( 0, 0, 0 ) ); 
+					m_pEngineEffects->EnergySplash( player->GetAbsOrigin( ), Vector( 0, 0, 0 ) ); 
 					//m_pEngineEffects->EnergySplash(player->GetAbsOrigin(), Vector(0, 0, 0), true);		
 				}
 			}

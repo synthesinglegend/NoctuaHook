@@ -189,12 +189,12 @@ bool mouse2holdreleased = false;
       std::stringstream ss1;
       if ( isConnected )
       {
-        ss << "Apotheosis" << protect( " | " ) << protect("built at:") << date << " | " << protect("rtt:") << ping << " | " << protect( "fps: " ) << fps;
+        ss << "Apotheosis" << protect( " | " ) << protect("built at: ") << date << " | " << protect("rtt: ") << ping << " | " << protect( "fps: " ) << fps;
         render::text( width - 271, 27, color( 255, 255, 255 ), render::main_font, false, ss.str( ) );
       }
       if ( !isConnected )
       {
-        ss1 << protect("Apotheosis") << protect( " | " ) << protect("built at:") << date << " | " << protect("none") << " | " << protect( "fps: " ) << fps;
+        ss1 << protect("Apotheosis") << protect( " | " ) << protect("built at: ") << date << " | " << protect("none") << " | " << protect( "fps: " ) << fps;
         render::text( width - 271, 27, color( 255, 255, 255 ), render::main_font, false, ss1.str( ) );
       }
     }

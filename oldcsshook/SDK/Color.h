@@ -44,7 +44,7 @@ namespace Valve
 		static Color	FromHSB(float hue, float saturation, float brightness);
 
 	public:
-		std::uint8_t r, g, b, a;
+		std::uint8_t r = 255, g = 255, b = 255, a = 255;
 	};
 };
 
