@@ -143,9 +143,9 @@ public:
 		class AntiAim
 		{
 		public:
-			bool Active, manuals,  lowdelta, opposite, lbybreaker, Static, WallDetection, DuckInAir, TurnOff, AtTargetsAct;
-			int Pitch, LeftManualValue, RightManualValue, inverterkey, legityawinuse, Yaw, Variation, DuckPitch, DuckYaw, DuckVariation, WallDetectionMode, AtTargets;
-			float RealValue, JitterReal, JitterFake, way, FakeValue;
+			bool Active = true, manuals,  lowdelta, opposite, lbybreaker, Static, WallDetection, DuckInAir, TurnOff, AtTargetsAct;
+			int Pitch = 3, LeftManualValue, RightManualValue, inverterkey, legityawinuse, Yaw = 3, Variation, DuckPitch, DuckYaw, DuckVariation, WallDetectionMode, AtTargets;
+			float RealValue = 95 , JitterReal, JitterFake, way, FakeValue = 135;
 			float RealJit, RealJit2, FakeJit, FakeJit2, PitchValue;
 		};
 

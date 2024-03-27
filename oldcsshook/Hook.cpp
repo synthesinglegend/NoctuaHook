@@ -2,6 +2,7 @@
 #include "discord_rpc_init.h"
 #include "Redirection_Bytes/Redirection_Manager.hpp"
 #include "Redirection_Bytes/Redirection_Manager_Redirect_Function.hpp"
+#include "Sounds.h"
 static DWORD ConvertToDWORD( float const number )
 {
 	return *reinterpret_cast< DWORD const* >( &number );
@@ -472,6 +473,7 @@ void Hook( void )
 	//printconsole( /* Hooks done...\n*/XorStr<0xEE,16,0x806644F3>("\xCE\xA7\x9F\x9E\x99\x80\xD4\x91\x99\x99\x9D\xD7\xD4\xD5\xF6"+0x806644F3).s );
 
 	printconsole("[2] Done");
+	//funny_sound_on_inject( );
 }
 
 void UnHook( void )

@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <tchar.h>
 #include "new gui//render.hpp"
+
 typedef BOOL(WINAPI* SetCursorPosFunc)(int x, int y);
 SetCursorPosFunc SetCursorPosPtr = NULL;
 
@@ -89,6 +90,7 @@ void printconsole(const char* msg, ...)
 	printf(szBuffer);
 }
 
+
 void runconsole()
 {
 	if (AllocConsole())
@@ -173,7 +175,7 @@ int __stdcall DllMain(HMODULE hMod, DWORD dwReason, PVOID lpReserved)
 	};
 	if (dwReason == DLL_PROCESS_ATTACH)
 	{
-		//runconsole();
+		runconsole();
 		if ((GetVolumeInformation)(
 			(_T("C:\\")), 
 			volumeName,
