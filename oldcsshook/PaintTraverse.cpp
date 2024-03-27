@@ -1104,11 +1104,11 @@ void __fastcall Hooked_PaintTraverse( void* ptr, int edx, unsigned int vguiPanel
 			{
 				if (Weapon->GetWeaponID() == WEAPON_SCOUT || Weapon->GetWeaponID() == WEAPON_G3SG1 || Weapon->GetWeaponID() == WEAPON_SG550 || Weapon->GetWeaponID() == WEAPON_AWP)
 				{
-					if (bIsScoped)
-					{
+					
+			
 						g_Drawing.FilledRect(0, y, w, size, Color::Black);
 						g_Drawing.FilledRect(x, 0, size, h, Color::Black);
-					}
+					
 				}
 			}
 

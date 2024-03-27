@@ -224,7 +224,7 @@ bool mouse2holdreleased = false;
           zgui::checkbox(protect("remove hands"), g_CVars.Visuals.NoHands);
           zgui::checkbox(protect("remove recoil"), g_CVars.Visuals.NoVisualRecoil);
           zgui::checkbox(protect("remove skybox"), g_CVars.Visuals.NoSky );
-          
+          zgui::checkbox( protect( "remove scope" ), g_CVars.Visuals.RemoveScope );
       }
       zgui::end_groupbox();
 
@@ -290,7 +290,7 @@ bool mouse2holdreleased = false;
           zgui::combobox( "target sorting", std::vector<std::string>{"by distance", "by health", "next shot", "randomly"}, g_CVars.Aimbot.TargetSelection );
           std::array< std::string, 4 > aimbothitbox = { "head", "neck", "chest", "stomach" };
           static int hitboxselect = 0;
-         // PseudoCombo(RIGHT, hitboxselect, 0, 3, "hitbox", aimbothitbox.at(hitboxselect).c_str());
+         
           zgui::combobox("hitbox", std::vector<std::string>{"head", "neck", "chest", "stomach"}, hitboxselect);
           if (hitboxselect == 0) g_CVars.Aimbot.Hitbox = 12;
           else if (hitboxselect == 1) g_CVars.Aimbot.Hitbox = 11;

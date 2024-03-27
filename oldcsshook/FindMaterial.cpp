@@ -75,6 +75,17 @@ void Visuals()
 		{
 			material->SetMaterialVarFlag(MATERIAL_VAR_NO_DRAW, g_CVars.Visuals.NoHands);
 		}
+		if ( g_CVars.Visuals.RemoveScope )
+		{
+			if ( strstr( material->GetName( ), "weapon" ) )
+			{
+				if ( ( LocalPlayer->m_iFOV( ) >= LocalPlayer->m_iDefaultFOV( ) ) )
+				{
+					material->SetMaterialVarFlag( MATERIAL_VAR_NO_DRAW, g_CVars.Visuals.RemoveScope );
+				}
+			}
+		}
+		
 	}
 }
 
